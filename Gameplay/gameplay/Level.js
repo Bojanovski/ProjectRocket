@@ -1,8 +1,0 @@
-class Level {	
-	
-	update() {
-	}
-	
-	display() {
-	}	
-}

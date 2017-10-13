@@ -15,6 +15,7 @@ class GameStateManager {
 	  }
 	  
 	  // Then draw
+	  translate(width/2, height/2);
 	  for (i = 0; i < this.stack.length; i++) {
 		  this.stack[i].draw();
 	  }	  

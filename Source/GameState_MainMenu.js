@@ -6,8 +6,7 @@ function newGameClicked(){
 class GameState_MainMenu extends GameState {
 	
   constructor(gsm) {
-	  super(gsm)
-
+	  super(gsm);
 	  
 	  //this.input = createInput();
 	  //this.input.position(20, 65);
@@ -33,7 +32,5 @@ class GameState_MainMenu extends GameState {
   print() {
 	  return '(GameState_MainMenu)';
   }
-  
 
-  
 }

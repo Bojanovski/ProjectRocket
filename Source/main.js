@@ -14,7 +14,8 @@ function setup() {
   
   gGSM = new GameStateManager();
   var gs = new GameState_MainMenu();
-  gGSM.pushState(gs);
+  var gameplay = new GameState_Gameplay();
+  gGSM.pushState(gameplay);
 }
 
 function draw() {
