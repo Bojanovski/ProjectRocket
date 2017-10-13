@@ -10,6 +10,6 @@ class Node {
 	
 	display(shipX, shipY) {
 		fill(255,0,0);
-		ellipse(shipX + this.x, shipY + this.y, 50.0, 50.0);
+		ellipse(shipX + this.x, shipY + this.y, 30.0, 30.0);
 	}	
 }
