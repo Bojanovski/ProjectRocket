@@ -1,21 +1,21 @@
 class GameState_Gameplay extends GameState {
 
-  	constructor(gsm) {
-	  	super(gsm);
+	constructor(gsm) {
+		super(gsm);
 
-  		this.level = new Level();
-  		this.ship = new Ship(0.0,0.0);
-  		this.ship.generateRandom();
+		this.level = new Level();
+		this.ship = new Ship(0.0,0.0);
+		this.ship.generateRandom();
 	}
 
-  update(deltaTime) {
-  }
-  
-  draw() {
+	update(deltaTime) {
+	}
+	
+	display() {
 		this.ship.display();
-  }
-  
-  print() {
-	  return '(Base)';
-  }
+	}
+	
+	print() {
+		return '(Base)';
+	}
 }

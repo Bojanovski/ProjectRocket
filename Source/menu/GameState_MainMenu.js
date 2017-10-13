@@ -1,13 +1,13 @@
 
 function newGameClicked(){
-	  print('ajajaj ');
-  }
+	print('ajajaj ');
+}
 
 class GameState_MainMenu extends GameState {
 	
-  constructor(gsm) {
-	  super(gsm);
-	  
+	constructor(gsm) {
+		super(gsm);
+		
 	  //this.input = createInput();
 	  //this.input.position(20, 65);
 	  
@@ -20,17 +20,17 @@ class GameState_MainMenu extends GameState {
 
 	  //textAlign(CENTER);
 	  //textSize(50);
-  }
-  
-  update(deltaTime) {
-	  
-  }
-  
-  draw() {
-  }
-  
-  print() {
-	  return '(GameState_MainMenu)';
-  }
+	}
+	
+	update(deltaTime) {
+		
+	}
+	
+	display() {
+	}
+	
+	print() {
+		return '(GameState_MainMenu)';
+	}
 
 }
