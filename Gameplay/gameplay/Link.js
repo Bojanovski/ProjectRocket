@@ -1,0 +1,8 @@
+class Link {
+
+	update() {
+	}
+	
+	display() {
+	}	
+}
