@@ -29,7 +29,7 @@ class GameState_Gameplay extends GameState {
 				var posY = node.y;
 				var newParticle = new Particle(posX, posY, node.r);
 				this.physicsEngine.particles.push(newParticle);
-				this.particleNodeMap[node.id] = newParticle;
+				this.ship.particleNodeMap[node.id] = newParticle;
 				
 				if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
 					this.ship.thrusterParticles[node.id] = newParticle;
@@ -55,30 +55,16 @@ class GameState_Gameplay extends GameState {
 				var restingLength = this.ship.links[i].restingLength;
 				var node1 = this.ship.links[i].nodes[0];
 				var node2 = this.ship.links[i].nodes[1];
-				var particle1 = this.particleNodeMap[node1.id];
-				var particle2 = this.particleNodeMap[node2.id];
+				var particle1 = this.ship.particleNodeMap[node1.id];
+				var particle2 = this.ship.particleNodeMap[node2.id];
 				applyHookeLaw(particle1, particle2, restingLength);
 			}
 		}
 
-		// temp testing code
-		var node = this.ship.nodes[0];
-		var particle = this.particleNodeMap[node.id];
-		if (keyIsDown(UP_ARROW))
-			particle.addForce(createVector(0, -200));
-
 		// Update the particles.
 		this.physicsEngine.update(deltaTime);
-
-		// Set the nodes of the ship to be at respective particle positions.
-		if (this.ship.nodes !== undefined) {
-			for (var i = 0; i < this.ship.nodes.length; i++) {
-				var node = this.ship.nodes[i];
-				var particle = this.particleNodeMap[node.id];
-				node.x = particle.pos.x;
-				node.y = particle.pos.y;
-			}
-		}
+		
+		this.ship.update(deltaTime);
 	}
 
 	display() {

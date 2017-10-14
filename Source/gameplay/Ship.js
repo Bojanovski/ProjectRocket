@@ -8,6 +8,7 @@ class Ship {
 		this.neuronNodeMap = {};
 		this.generateDefault();
 		this.thrusterParticles = {};
+		this.particleNodeMap = {};
 	}
 
 	generateDefault() {
@@ -84,7 +85,22 @@ class Ship {
 		}
 	}
 
-	update() {
+	update(deltaTime) {
+		// temp testing code
+		var node = this.nodes[0];
+		var particle = this.particleNodeMap[node.id];
+		if (keyIsDown(UP_ARROW))
+			particle.addForce(createVector(0, -200));
+		
+		// Set the nodes of the ship to be at respective particle positions.
+		if (this.nodes !== undefined) {
+			for (var i = 0; i < this.nodes.length; i++) {
+				var node = this.nodes[i];
+				var particle = this.particleNodeMap[node.id];
+				node.x = particle.pos.x;
+				node.y = particle.pos.y;
+			}
+		}
 	}
 
 	display() {
