@@ -42,19 +42,7 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
-
-		// Generate particle forces.
-		if (this.ship.links !== undefined) {
-			for (var i = 0; i < this.ship.links.length; i++) {
-				var restingLength = this.ship.links[i].restingLength;
-				var node1 = this.ship.links[i].nodes[0];
-				var node2 = this.ship.links[i].nodes[1];
-				var particle1 = this.ship.particleNodeMap[node1.id];
-				var particle2 = this.ship.particleNodeMap[node2.id];
-				applyHookeLaw(particle1, particle2, restingLength);
-			}
-		}
-
+		
 		// Update the particles.
 		this.physicsEngine.update(deltaTime);
 

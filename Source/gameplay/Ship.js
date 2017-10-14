@@ -109,6 +109,18 @@ class Ship {
 		this.neuralNetwork.step();
 		this.getOutputsFromNeuralNetwork();
 
+		// Generate particle forces.
+		if (this.links !== undefined) {
+			for (var i = 0; i < this.links.length; i++) {
+				var restingLength = this.links[i].restingLength;
+				var node1 = this.links[i].nodes[0];
+				var node2 = this.links[i].nodes[1];
+				var particle1 = this.particleNodeMap[node1.id];
+				var particle2 = this.particleNodeMap[node2.id];
+				applyHookeLaw(particle1, particle2, restingLength);
+			}
+		}
+		
 		// temp testing code
 		var node = this.nodes[0];
 		var particle = this.particleNodeMap[node.id];
