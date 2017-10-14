@@ -5,7 +5,7 @@ class Strut extends Link {
 	}
 
   display(shipX, shipY) {
-    super.display(shipX, shipY, [128, 128, 128]);
+    super.display(shipX, shipY, [100]);
 	}
 
 }

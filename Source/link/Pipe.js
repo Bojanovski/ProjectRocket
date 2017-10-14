@@ -5,7 +5,7 @@ class Pipe extends Link {
 	}
 
   display(shipX, shipY) {
-    super.display(shipX, shipY, [0, 0, 255]);
+    super.display(shipX, shipY, [200]);
 	}
 
 }

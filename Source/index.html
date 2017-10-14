@@ -3,13 +3,16 @@
   <head>
   <meta name="viewport" width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0>
   <style> body {padding: 0; margin: 0;} </style>
+
+  <!-- Libraries -->
   <script src="libs/p5.min.js"></script>
   <script src="libs/addons/p5.dom.min.js"></script>
   <script src="libs/addons/p5.sound.min.js"></script>
 
-	<!-- Write your comments here -->
-  <script src="neuralNetwork/Neuron.js"></script>
-  <script src="neuralNetwork/NeuralNetwork.js"></script>
+	<!-- Learning -->
+  <script src="learning/Genome.js"></script>
+  <script src="learning/Neuron.js"></script>
+  <script src="learning/NeuralNetwork.js"></script>
 
   <script src="GameState.js"></script>
 	<script src="GameStateManager.js"></script>
@@ -20,10 +23,18 @@
 
   <script src="designer/ShipSettings.js"></script>
 
-	<script src="gameplay/Node.js"></script>
-  <script src="gameplay/Link.js"></script>
-  <script src="gameplay/Pipe.js"></script>
-  <script src="gameplay/Strut.js"></script>
+  <!-- Node -->
+  <script src="node/Node.js"></script>
+  <script src="node/Sensor.js"></script>
+  <script src="node/Thruster.js"></script>
+  <script src="node/Cell.js"></script>
+
+  <!-- Link -->
+  <script src="link/Link.js"></script>
+  <script src="link/Pipe.js"></script>
+  <script src="link/Strut.js"></script>
+
+  <!-- Gameplay -->
   <script src="gameplay/Ship.js"></script>
   <script src="gameplay/ShipManager.js"></script>
   <script src="gameplay/Level.js"></script>
@@ -32,6 +43,7 @@
   <!-- Physics -->
   <script src="physics/PhysicsEngine.js"></script>
   <script src="physics/Particle.js"></script>
+  <script src="physics/StaticCollider.js"></script>
 
   <script src="designer/GameState_Designer.js"></script>
 

@@ -3,23 +3,29 @@ var nodeIDCounter = 0;
 
 class Node {
 
-	constructor(x, y, r, m) {
+	constructor(x, y, r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
-		this.m = m;
+		this.m = 1.0;
 		
+		this.value = 0.0;
+
 		this.id = nodeIDCounter++;
 	}
 
 	update() {
 	}
 
-	display(shipX, shipY) {
-		stroke(0, 0, 255);
+	display(shipX, shipY, color) {
+		if (color === undefined) color = [0, 0, 255];
+		stroke(color);
 		strokeWeight(0);
-		fill(0, 0, 255);
+		fill(color);
 		var diameter = this.r * 2.0;
 		ellipse(shipX + this.x, shipY + this.y, diameter, diameter);
 	}
+
+	isThruster() { return false; }
+	isSensor() { return false; }
 }

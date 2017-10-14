@@ -3,7 +3,7 @@ class GameState_Gameplay extends GameState {
 
 	constructor(gsm) {
 		super(gsm);
-		
+
 		this.physicsEngine = new PhysicsEngine();
 		this.shipManager = new ShipManager();
 		this.level = new Level();
@@ -13,17 +13,27 @@ class GameState_Gameplay extends GameState {
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
-		
+
+		// Create static colliders for rocks
+		for (var i = 0; i < this.level.rocks.length; i++) {
+			var rock = this.level.rocks[i];
+			this.physicsEngine.staticColliders.push(new StaticCollider(rock[0], rock[1], rock[2], rock[3]));
+		}
+
 		// Create a particle for every node in the ship.
 		if (this.ship.nodes !== undefined) {
 			for (var i = 0; i < this.ship.nodes.length; i++) {
-				
+
 				var node = this.ship.nodes[i];
 				var posX = node.x;
 				var posY = node.y;
-				var newParticle = new Particle(posX, posY);
+				var newParticle = new Particle(posX, posY, node.r);
 				this.physicsEngine.particles.push(newParticle);
 				this.particleNodeMap[node.id] = newParticle;
+				
+				if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
+					this.ship.thrusterParticles[node.id] = newParticle;
+				}
 			}
 		}
 	}
@@ -32,7 +42,13 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
-		
+
+		// neural net step
+		this.ship.neuralNetwork.step();
+		var genome = this.ship.neuralNetwork.getGenome();
+		genome.randomize();
+		this.ship.neuralNetwork.setGenome(genome);
+
 		// Generate particle forces.
 		if (this.ship.links !== undefined) {
 			for (var i = 0; i < this.ship.links.length; i++) {
@@ -41,27 +57,19 @@ class GameState_Gameplay extends GameState {
 				var node2 = this.ship.links[i].nodes[1];
 				var particle1 = this.particleNodeMap[node1.id];
 				var particle2 = this.particleNodeMap[node2.id];
-				var diff = p5.Vector.sub(particle1.pos, particle2.pos);
-				var dist = p5.Vector.mag(diff);
-				var forceMagnitude = (dist - restingLength) * elasticityCoefficient;
-				var dir = diff;
-				dir.normalize();
-				var force = p5.Vector.mult(dir, forceMagnitude);				
-				particle2.addForce(force);
-				var forceNeg = p5.Vector.mult(force, -1.0);
-				particle1.addForce(forceNeg);
+				applyHookeLaw(particle1, particle2, restingLength);
 			}
 		}
-		
+
 		// temp testing code
 		var node = this.ship.nodes[0];
 		var particle = this.particleNodeMap[node.id];
 		if (keyIsDown(UP_ARROW))
 			particle.addForce(createVector(0, -200));
-		
+
 		// Update the particles.
 		this.physicsEngine.update(deltaTime);
-		
+
 		// Set the nodes of the ship to be at respective particle positions.
 		if (this.ship.nodes !== undefined) {
 			for (var i = 0; i < this.ship.nodes.length; i++) {
@@ -71,10 +79,18 @@ class GameState_Gameplay extends GameState {
 				node.y = particle.pos.y;
 			}
 		}
-	
 	}
 
 	display() {
+
+		// Draw rocks
+		fill(127, 127, 127, 127);
+		stroke(147, 147, 147);
+		for (var i = 0; i < this.level.rocks.length; i++) {
+			var rock = this.level.rocks[i];
+			rect(rock[0], rock[1], rock[2], rock[3]);
+		}
+
 		this.ship.display();
 	}
 

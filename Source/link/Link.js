@@ -12,7 +12,7 @@ class Link {
 	}
 
 	display(shipX, shipY) {
-		this.display(shipY, shipY, [255, 0, 0])
+		this.display(shipY, shipY, [255, 0, 0]);
 	}
 
 	display(shipX, shipY, color) {
