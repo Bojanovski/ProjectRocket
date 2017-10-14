@@ -22,6 +22,6 @@ function setup() {
 }
 
 function draw() {
-  background(random(30));
+  background(10);
   gsm.tick(1/FPS);
 }
