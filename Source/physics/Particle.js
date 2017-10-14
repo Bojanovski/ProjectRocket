@@ -1,11 +1,12 @@
 
 class Particle{
 	
-	constructor(x, y) {
+	constructor(x, y, radius) {
 		this.pos = createVector(x, y);
 		this.vel = createVector(0, 0);
 		this.acc = createVector(0, 0);
 		this.mass = 1.0;
+		this.radius = radius;
 	}
 	
 	update(dt) {

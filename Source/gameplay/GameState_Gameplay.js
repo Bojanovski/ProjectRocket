@@ -27,7 +27,7 @@ class GameState_Gameplay extends GameState {
 				var node = this.ship.nodes[i];
 				var posX = node.x;
 				var posY = node.y;
-				var newParticle = new Particle(posX, posY);
+				var newParticle = new Particle(posX, posY, node.r);
 				this.physicsEngine.particles.push(newParticle);
 				this.particleNodeMap[node.id] = newParticle;
 			}
@@ -52,7 +52,7 @@ class GameState_Gameplay extends GameState {
 				var forceMagnitude = (dist - restingLength) * elasticityCoefficient;
 				var dir = diff;
 				dir.normalize();
-				var force = p5.Vector.mult(dir, forceMagnitude);				
+				var force = p5.Vector.mult(dir, forceMagnitude);
 				particle2.addForce(force);
 				var forceNeg = p5.Vector.mult(force, -1.0);
 				particle1.addForce(forceNeg);
@@ -83,9 +83,8 @@ class GameState_Gameplay extends GameState {
 	display() {
 		
 		// Draw rocks
-		// Set colors
-		fill(204, 101, 192, 127);
-		stroke(127, 127, 127);
+		fill(127, 127, 127, 127);
+		stroke(147, 147, 147);
 		for (var i = 0; i < this.level.rocks.length; i++) {
 			var rock = this.level.rocks[i];
 			rect(rock[0], rock[1], rock[2], rock[3]);
