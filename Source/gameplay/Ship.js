@@ -121,11 +121,12 @@ class Ship {
 			if (this.nodes[ni].isThruster()) {
 				var particle = this.particleNodeMap[this.nodes[ni].id];
 				var value = this.neuronNodeMap[this.nodes[ni].id].value;
-
+				
+				this.nodes[ni].thrusterDir = thrusterDir;
 				var forceVector = p5.Vector.mult(thrusterDir, -1000.0 * value);
 				particle.addForce(forceVector);
 				
-				//print(forceVector);
+				print(forceVector);
 			}
 		}
 
