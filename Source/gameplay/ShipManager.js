@@ -2,6 +2,7 @@ class ShipManager {
 
   constructor() {
     this.ships = [];
+    this.defaultShip = new Ship("Default Ship", 0.0, 0.0);
   }
 
   addShip(ship) {
@@ -15,5 +16,5 @@ class ShipManager {
       }
     }
   }
-
+  
 }

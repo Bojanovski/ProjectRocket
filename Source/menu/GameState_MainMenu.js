@@ -1,34 +1,41 @@
+function designClicked(){
+	gsm.popState();
+	gsm.pushState(gsDesigner);
+}
 
-function newGameClicked(){
-	print('ajajaj ');
+function playClicked(){
+	gsm.popState();
+	gsm.pushState(gsGameplay);
 }
 
 class GameState_MainMenu extends GameState {
-	
+
 	constructor(gsm) {
 		super(gsm);
-		
-	  //this.input = createInput();
-	  //this.input.position(20, 65);
-	  
-	  this.button = createButton('submit');
-	  this.button.position(10, 65);
-	  this.button.mousePressed(newGameClicked);
-
-	  //greeting = createElement('h2', 'what is your name?');
-	  //greeting.position(20, 5);
-
-	  //textAlign(CENTER);
-	  //textSize(50);
 	}
-	
+
+	initiate() {
+		this.designButton = createButton('DESIGN');
+		this.designButton.position(width/2.0, height/2.0 - 40);
+		this.designButton.mousePressed(designClicked);
+
+		this.playButton = createButton('PLAY');
+		this.playButton.position(width/2.0, height/2.0);
+		this.playButton.mousePressed(playClicked);
+	}
+
+	deinitiate() {
+		this.designButton.remove();
+		this.playButton.remove();
+	}
+
 	update(deltaTime) {
-		
+
 	}
-	
+
 	display() {
 	}
-	
+
 	print() {
 		return '(GameState_MainMenu)';
 	}

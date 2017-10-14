@@ -1,29 +1,31 @@
 
 var gsm;
+var gsMainMenu;
+var gsGameplay;
+var gsDesigner;
+
+var unit;
 
 function setup() {
+  createCanvas(windowWidth,windowHeight);
+  frameRate(15);
+  unit = windowHeight / 100;
+
   scoreElem = createDiv('Score = 0');
   scoreElem.position(20, 20);
   scoreElem.id = 'score';
   scoreElem.style('color', 'white');
 
-  createCanvas(500, 500);
-  frameRate(15);
-
   gsm = new GameStateManager();
-  var gsMainMenu = new GameState_MainMenu();
-  var gsGameplay = new GameState_Gameplay();
-  var gsDesigner = new GameState_Designer();
+  gsMainMenu = new GameState_MainMenu();
+  gsGameplay = new GameState_Gameplay();
+  gsDesigner = new GameState_Designer();
   //gsm.pushState(gsGameplay);
-  gsm.pushState(gsDesigner);
+  //gsm.pushState(gsDesigner);
+  gsm.pushState(gsMainMenu);
 }
 
 function draw() {
-  background(0);
-
+  background(random(30));
   gsm.tick(1/15);
-
-  xFruit = floor(random(10, (width - 100) / 10)) * 10;
-  yFruit = floor(random(10, (height - 100) / 10)) * 10;
-  point(xFruit, yFruit);
 }

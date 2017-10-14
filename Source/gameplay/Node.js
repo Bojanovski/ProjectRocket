@@ -1,9 +1,10 @@
 class Node {
 
-	constructor(x, y, r) {
+	constructor(x, y, r, m) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
+		this.m = m;
 	}
 
 	update() {

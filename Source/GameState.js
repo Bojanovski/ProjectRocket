@@ -4,6 +4,14 @@ class GameState {
 		 this.gsm = gsm;
 	}
 
+	initiate() {
+
+	}
+
+	deintiate() {
+		
+	}
+
 	update(deltaTime) {
 	}
 
@@ -12,5 +20,5 @@ class GameState {
 
 	print() {
 		return '(Base)';
-	}	 
+	}
 }

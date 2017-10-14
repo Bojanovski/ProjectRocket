@@ -26,7 +26,7 @@ class Ship {
 						// spawn node
 						var x = shipSettings.horizontalDistance * (nodeIndexInLayer - shipSettings.layout[layerIndex].length / 2.0 + 0.5);
 						var y = - shipSettings.verticalDistance * layerIndex;
-						var node = new Node(x, y, shipSettings.nodeRadius);
+						var node = new Node(x, y, shipSettings.nodeRadius, 0.0);
 						this.nodes.push(node);
 						// link to previous node with strut
 						if (nodeIndexInLayer > 0) {

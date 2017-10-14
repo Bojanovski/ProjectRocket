@@ -1,9 +1,24 @@
+function designerDoneClicked(){
+	gsm.popState();
+	gsm.pushState(gsMainMenu);
+}
+
 class GameState_Designer extends GameState {
 
 	constructor(gsm) {
 		super(gsm);
 		this.shipSettings = new ShipSettings();
 		this.shipName = "Designed Ship";
+	}
+
+	initiate() {
+		this.button = createButton('DONE');
+		this.button.position(width/2.0, 100);
+		this.button.mousePressed(designerDoneClicked);
+	}
+
+	deinitiate() {
+		this.button.remove();
 	}
 
 	update(deltaTime) {
