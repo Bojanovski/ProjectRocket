@@ -104,7 +104,12 @@ class Ship {
 	}
 
 	update(deltaTime) {
-
+		
+		// Update the nodes
+		for (var ni = 0; ni < this.nodes.length; ni++) {
+			this.nodes[ni].update(deltaTime);
+		}
+		
 		// neural net step
 		this.setInputsForNeuralNetwork();
 		this.neuralNetwork.step();

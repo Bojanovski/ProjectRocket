@@ -15,7 +15,7 @@ class Thruster extends Node {
 	display(shipX, shipY) {
 		super.display(shipX, shipY, [255, 0, 0]);
 		
-		this.emitter.emit(true, createVector(super.x, super.x), createVector(0.0, 1.0));
+		this.emitter.emit(true, createVector(this.x, this.y), createVector(0.0, 1.0));
 		this.emitter.draw();
 	}
 
