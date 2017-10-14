@@ -8,6 +8,8 @@ class Node {
 		this.y = y;
 		this.r = r;
 		this.m = 1.0;
+		
+		this.value = 0.0;
 
 		this.id = nodeIDCounter++;
 	}

@@ -5,6 +5,7 @@ class Ship {
 		this.x = x;
 		this.y = y;
 		this.neuralNetwork = new NeuralNetwork();
+		this.neuronNodeMap = {};
 		this.generateDefault();
 	}
 
@@ -39,6 +40,8 @@ class Ship {
 						// add a neuron
 						var neuron = new Neuron();
 						this.neuralNetwork.neurons.push(neuron);
+						// add a neuron-node map record
+						this.neuronNodeMap[node.id] = neuron;
 						// link to previous node with strut
 						if (nodeIndexInLayer > 0) {
 							var strut = new Strut([this.nodes[this.nodes.length - 2], this.nodes[this.nodes.length - 1]]);
@@ -64,9 +67,20 @@ class Ship {
 	}
 
 	setInputsForNeuralNetwork() {
+		for (var ni = 0; ni < this.nodes.length; ni++) {
+			if (this.nodes[ni].isSensor()) {
+				neuronNodeMap[this.nodes[ni].id].value = this.nodes[ni].value;
+				neuronNodeMap[this.nodes[ni].id].output = this.nodes[ni].value;
+			}
+		}
 	}
 
 	getOutputsFromNeuralNetwork() {
+		for (var ni = 0; ni < this.nodes.length; ni++) {
+			if (this.nodes[ni].isThruster()) {
+				this.nodes[ni].value = neuronNodeMap[this.nodes[ni].id].value;
+			}
+		}
 	}
 
 	update() {
