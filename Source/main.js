@@ -1,12 +1,12 @@
 
 var gsm;
-var gsMainMenu;
+var FPS = 60;
 
 var unit;
 
 function setup() {
   createCanvas(windowWidth,windowHeight);
-  frameRate(15);
+  frameRate(FPS);
   unit = windowHeight / 100;
 
   scoreElem = createDiv('Score = 0');
@@ -15,13 +15,13 @@ function setup() {
   scoreElem.style('color', 'white');
 
   gsm = new GameStateManager();
-  gsMainMenu = new GameState_MainMenu();
+  var gsFirst = new GameState_Gameplay();
   //gsm.pushState(gsGameplay);
   //gsm.pushState(gsDesigner);
-  gsm.pushState(gsMainMenu);
+  gsm.pushState(gsFirst);
 }
 
 function draw() {
   background(random(30));
-  gsm.tick(1/15);
+  gsm.tick(1/FPS);
 }
