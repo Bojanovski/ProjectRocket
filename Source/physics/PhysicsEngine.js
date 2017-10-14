@@ -37,6 +37,8 @@ class PhysicsEngine{
 		}
 		
 		// Collision resoulution
-		print(contacts.length);
+		for (var i = 0; i < contacts.length; i++) {
+			//var dist1 = p5.Vector.add();
+		}
 	}
 }
