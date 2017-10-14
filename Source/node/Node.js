@@ -9,6 +9,9 @@ class Node {
 		this.r = r;
 		this.m = 1.0;
 
+		this.isThruster = false;
+		this.isSensor = false;
+
 		this.id = nodeIDCounter++;
 	}
 

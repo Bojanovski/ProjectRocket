@@ -3,6 +3,7 @@ class Thruster extends Node {
 	constructor(x, y, r) {
 		super(x, y, r);
 		this.value = 0.0;
+		this.isThruster = true;
 	}
 
 	update() {
