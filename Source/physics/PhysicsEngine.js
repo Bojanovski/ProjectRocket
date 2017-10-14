@@ -8,6 +8,18 @@ class Contact{
 	
 }
 
+function applyHookeLaw(particle1, particle2, restingLength) {
+	var diff = p5.Vector.sub(particle1.pos, particle2.pos);
+	var dist = p5.Vector.mag(diff);
+	var forceMagnitude = (dist - restingLength) * elasticityCoefficient;
+	var dir = diff;
+	dir.normalize();
+	var force = p5.Vector.mult(dir, forceMagnitude);
+	particle2.addForce(force);
+	var forceNeg = p5.Vector.mult(force, -1.0);
+	particle1.addForce(forceNeg);
+}
+
 class PhysicsEngine{
 	
 	constructor() {

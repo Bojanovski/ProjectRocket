@@ -52,15 +52,7 @@ class GameState_Gameplay extends GameState {
 				var node2 = this.ship.links[i].nodes[1];
 				var particle1 = this.particleNodeMap[node1.id];
 				var particle2 = this.particleNodeMap[node2.id];
-				var diff = p5.Vector.sub(particle1.pos, particle2.pos);
-				var dist = p5.Vector.mag(diff);
-				var forceMagnitude = (dist - restingLength) * elasticityCoefficient;
-				var dir = diff;
-				dir.normalize();
-				var force = p5.Vector.mult(dir, forceMagnitude);
-				particle2.addForce(force);
-				var forceNeg = p5.Vector.mult(force, -1.0);
-				particle1.addForce(forceNeg);
+				applyHookeLaw(particle1, particle2, restingLength);
 			}
 		}
 
@@ -82,7 +74,6 @@ class GameState_Gameplay extends GameState {
 				node.y = particle.pos.y;
 			}
 		}
-
 	}
 
 	display() {
