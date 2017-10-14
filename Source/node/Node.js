@@ -9,9 +9,6 @@ class Node {
 		this.r = r;
 		this.m = 1.0;
 
-		this.isThruster = false;
-		this.isSensor = false;
-
 		this.id = nodeIDCounter++;
 	}
 
@@ -26,4 +23,7 @@ class Node {
 		var diameter = this.r * 2.0;
 		ellipse(shipX + this.x, shipY + this.y, diameter, diameter);
 	}
+
+	isThruster() { return false; }
+	isSensor() { return false; }
 }
