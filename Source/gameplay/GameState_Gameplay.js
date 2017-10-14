@@ -8,7 +8,6 @@ class GameState_Gameplay extends GameState {
 		this.shipManager = new ShipManager();
 		this.level = new Level();
 		this.ship = this.shipManager.defaultShip;
-		this.particleNodeMap = {};
 	}
 
 	initiate() {
@@ -44,10 +43,10 @@ class GameState_Gameplay extends GameState {
 
 	update(deltaTime) {
 		
-		// Update the particles.
+		// Update the physics.
 		this.physicsEngine.update(deltaTime);
 
-		// call ship update
+		// Update the ship.
 		this.ship.update(deltaTime);
 	}
 
