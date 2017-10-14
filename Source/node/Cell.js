@@ -4,7 +4,7 @@ class Cell extends Node {
 		super(x, y, r);
 	}
 
-	update() {
+	update(deltaTime) {
 	}
 
 	display(shipX, shipY) {

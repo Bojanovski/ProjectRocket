@@ -5,7 +5,7 @@ class Sensor extends Node {
 		this.value = 0.0;
 	}
 
-	update() {
+	update(deltaTime) {
 	}
 
 	display(shipX, shipY) {
