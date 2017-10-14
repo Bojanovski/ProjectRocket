@@ -7,6 +7,7 @@ class Particle{
 		this.acc = createVector(0, 0);
 		this.mass = 1.0;
 		this.radius = radius;
+		this.restitutionCoefficient = 0.01;
 	}
 	
 	update(dt) {
