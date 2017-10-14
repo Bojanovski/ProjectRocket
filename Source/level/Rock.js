@@ -4,7 +4,7 @@ class Rock {
     this.points = points;
   }
 
-  update() {
+  update(deltaTime) {
 
   }
 
