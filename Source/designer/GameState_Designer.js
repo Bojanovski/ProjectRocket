@@ -11,7 +11,7 @@ class GameState_Designer extends GameState {
 
 	display() {
 		var ship = new Ship(this.shipName, 0.0, 0.0, this.shipSettings);
-		this.shipSettings.layout = [[0,0,0], [0,0,0,0], [0,0]];
+		this.shipSettings.layout = [[0,0], [0,0,0,0,0], [0,0,0]];
 		ship.generateFromSettings(this.shipSettings);
 		ship.display();
 	}

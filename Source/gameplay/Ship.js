@@ -24,17 +24,22 @@ class Ship {
 				if (shipSettings.layout[layerIndex] !== undefined) {
 					for (var nodeIndexInLayer = 0; nodeIndexInLayer < shipSettings.layout[layerIndex].length; nodeIndexInLayer++) {
 						// spawn node
-						var x = shipSettings.horizontalDistance * (nodeIndexInLayer - shipSettings.layout[layerIndex].length / 2.0);
+						var x = shipSettings.horizontalDistance * (nodeIndexInLayer - shipSettings.layout[layerIndex].length / 2.0 + 0.5);
 						var y = - shipSettings.verticalDistance * layerIndex;
 						var node = new Node(x, y, shipSettings.nodeRadius);
 						this.nodes.push(node);
-						// link with previous layer
+						// link to previous node with strut
+						if (nodeIndexInLayer > 0) {
+							var strut = new Strut([this.nodes[this.nodes.length - 2], this.nodes[this.nodes.length - 1]]);
+							this.links.push(strut);
+						}
+						// link to previous layer with pipes
 						if (layerIndex > 0) {
 							for (var bottomNodeIndex = 0; bottomNodeIndex < shipSettings.layout[layerIndex - 1].length; bottomNodeIndex++) {
 								var currentNodeContainerIndex = this.nodes.length - 1;
 								var bottomNodeContainerIndex = this.nodes.length - bottomNodeIndex - nodeIndexInLayer - 2;
-								var link = new Link([this.nodes[currentNodeContainerIndex], this.nodes[bottomNodeContainerIndex]]);
-								this.links.push(link);
+								var pipe = new Pipe([this.nodes[currentNodeContainerIndex], this.nodes[bottomNodeContainerIndex]]);
+								this.links.push(pipe);
 							}
 						}
 					}
@@ -47,19 +52,20 @@ class Ship {
 	}
 
 	display() {
-
 		// display links
 		if (this.links !== undefined) {
 			for (var i = 0; i < this.links.length; i++) {
 				this.links[i].display(this.x, this.y);
 			}
 		}
-
 		// display nodes
 		if (this.nodes !== undefined) {
 			for (var i = 0; i < this.nodes.length; i++) {
 				this.nodes[i].display(this.x, this.y);
 			}
 		}
+		// print ship center point
+		fill(0, 255, 0);
+		ellipse(this.x, this.y, 10, 10);
 	}
 }

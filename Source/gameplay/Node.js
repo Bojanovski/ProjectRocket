@@ -10,7 +10,9 @@ class Node {
 	}
 
 	display(shipX, shipY) {
-		fill(255,0,0);
+		stroke(0, 0, 255);
+		strokeWeight(0);
+		fill(0, 0, 255);
 		var diameter = this.r * 2.0;
 		ellipse(shipX + this.x, shipY + this.y, diameter, diameter);
 	}
