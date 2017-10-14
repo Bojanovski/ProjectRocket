@@ -41,5 +41,4 @@ class GameStateManager {
 		// Now initiate the old sate that is now on top.
 		this.stack[this.stack.length - 1].initiate();
 	}
-
 }

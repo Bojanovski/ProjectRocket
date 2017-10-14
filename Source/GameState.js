@@ -1,3 +1,4 @@
+
 class GameState {
 
 	constructor(gsm) {

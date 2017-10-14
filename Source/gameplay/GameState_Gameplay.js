@@ -1,15 +1,20 @@
+
 class GameState_Gameplay extends GameState {
 
 	constructor(gsm) {
 		super(gsm);
+		
+		this.physicsEngine = new PhysicsEngine();
 		this.shipManager = new ShipManager();
-
 		this.level = new Level();
 		this.ship = this.shipManager.defaultShip;
 	}
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
+		
+
+		
 	}
 
 	deinitiate() {
