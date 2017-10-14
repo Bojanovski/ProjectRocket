@@ -1,7 +1,7 @@
 class Neuron {
 
 	constructor() {
-    this.inputs = [];
+    this.inputs = []; // [neuron, weight]
     this.bias = 0.0;
     this.value = 0.0;
     this.output = 0.0;
@@ -17,7 +17,7 @@ class Neuron {
       }
     }
     // apply relux
-    this.value = relu(h);
+    this.value = this.relu(h);
   }
 
   relu(h) {
