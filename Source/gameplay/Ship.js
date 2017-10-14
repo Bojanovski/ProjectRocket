@@ -9,7 +9,7 @@ class Ship {
 
 	generateDefault() {
 		var shipSettings = new ShipSettings();
-		shipSettings.layout = [[0,0], [0,0,0], [0]];
+		shipSettings.layout = [[1,1], [0,0,0], [2]];
 		this.generateFromSettings(shipSettings);
 	}
 
@@ -23,10 +23,16 @@ class Ship {
 				// iterate over nodes from the left
 				if (shipSettings.layout[layerIndex] !== undefined) {
 					for (var nodeIndexInLayer = 0; nodeIndexInLayer < shipSettings.layout[layerIndex].length; nodeIndexInLayer++) {
-						// spawn node
+						// get parameters for node spawning
+						var type = shipSettings.layout[layerIndex][nodeIndexInLayer];
 						var x = shipSettings.horizontalDistance * (nodeIndexInLayer - shipSettings.layout[layerIndex].length / 2.0 + 0.5);
 						var y = - shipSettings.verticalDistance * layerIndex;
-						var node = new Node(x, y, shipSettings.nodeRadius, 0.0);
+						var r = shipSettings.nodeRadius;
+						// spawn node
+						var node;
+						if (type == 0) node = new Cell(x, y, r);
+						else if (type == 1) node = new Thruster(x, y, r);
+						else if (type == 2) node = new Sensor(x, y, r);
 						this.nodes.push(node);
 						// link to previous node with strut
 						if (nodeIndexInLayer > 0) {

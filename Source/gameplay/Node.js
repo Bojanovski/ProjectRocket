@@ -3,11 +3,11 @@ var nodeIDCounter = 0;
 
 class Node {
 
-	constructor(x, y, r, m) {
+	constructor(x, y, r) {
 		this.x = x;
 		this.y = y;
 		this.r = r;
-		this.m = m;
+		this.m = 1.0;
 
 		this.id = nodeIDCounter++;
 	}

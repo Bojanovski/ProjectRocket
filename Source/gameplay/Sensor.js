@@ -1,7 +1,7 @@
 class Sensor extends Node {
 
-	constructor(x, y, r, m) {
-		super(x,y,r,m);
+	constructor(x, y, r) {
+		super(x, y, r);
 	}
 
 	update() {
