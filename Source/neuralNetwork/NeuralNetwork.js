@@ -14,5 +14,5 @@ class NeuralNetwork {
       this.neurons[i].updateOutput();
     }
 	}
-  
+    
 }

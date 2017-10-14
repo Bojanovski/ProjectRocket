@@ -4,6 +4,7 @@ class Ship {
 		this.name = name;
 		this.x = x;
 		this.y = y;
+		this.neuralNetwork = new NeuralNetwork();
 		this.generateDefault();
 	}
 
@@ -14,9 +15,10 @@ class Ship {
 	}
 
 	generateFromSettings(shipSettings) {
-		// clear previous nodes and links
+		// clear previous nodes and links and neurons
 		this.nodes = [];
 		this.links = [];
+		this.neuralNetwork.neurons = [];
 		// iterate over layers, from the bottom
 		if (shipSettings !== undefined && shipSettings.layout !== undefined) {
 			for (var layerIndex = 0; layerIndex < shipSettings.layout.length; layerIndex++) {
@@ -34,6 +36,9 @@ class Ship {
 						else if (type == 1) node = new Thruster(x, y, r);
 						else if (type == 2) node = new Sensor(x, y, r);
 						this.nodes.push(node);
+						// add a neuron
+						var neuron = new Neuron();
+						this.neuralNetwork.neurons.push(neuron);
 						// link to previous node with strut
 						if (nodeIndexInLayer > 0) {
 							var strut = new Strut([this.nodes[this.nodes.length - 2], this.nodes[this.nodes.length - 1]]);
@@ -44,8 +49,12 @@ class Ship {
 							for (var bottomNodeIndex = 0; bottomNodeIndex < shipSettings.layout[layerIndex - 1].length; bottomNodeIndex++) {
 								var currentNodeContainerIndex = this.nodes.length - 1;
 								var bottomNodeContainerIndex = this.nodes.length - bottomNodeIndex - nodeIndexInLayer - 2;
+								// make a pipe
 								var pipe = new Pipe([this.nodes[currentNodeContainerIndex], this.nodes[bottomNodeContainerIndex]]);
 								this.links.push(pipe);
+								// add a neural connection
+								var connection = [this.neuralNetwork.neurons[currentNodeContainerIndex], 0.5];
+								this.neuralNetwork.neurons[bottomNodeContainerIndex].inputs.push(connection);
 							}
 						}
 					}
