@@ -13,7 +13,7 @@ class GameState_Gameplay extends GameState {
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
-		
+
 		// Create static colliders for rocks
 		for (var i = 0; i < this.level.rocks.length; i++) {
 			var rock = this.level.rocks[i];
@@ -30,7 +30,7 @@ class GameState_Gameplay extends GameState {
 				var newParticle = new Particle(posX, posY, node.r);
 				this.physicsEngine.particles.push(newParticle);
 				this.ship.particleNodeMap[node.id] = newParticle;
-				
+
 				if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
 					this.ship.thrusterParticles[node.id] = newParticle;
 				}
@@ -42,12 +42,6 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
-
-		// neural net step
-		this.ship.neuralNetwork.step();
-		var genome = this.ship.neuralNetwork.getGenome();
-		genome.randomize();
-		this.ship.neuralNetwork.setGenome(genome);
 
 		// Generate particle forces.
 		if (this.ship.links !== undefined) {
@@ -63,7 +57,8 @@ class GameState_Gameplay extends GameState {
 
 		// Update the particles.
 		this.physicsEngine.update(deltaTime);
-		
+
+		// call ship update
 		this.ship.update(deltaTime);
 	}
 
