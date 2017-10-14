@@ -2,14 +2,20 @@
 class Ship {
 
 	constructor(name, x, y) {
+		// basic fields
 		this.name = name;
 		this.x = x;
 		this.y = y;
-		this.neuralNetwork = new NeuralNetwork();
-		this.neuronNodeMap = {};
-		this.generateDefault();
+
+		// physics fields
 		this.thrusterParticles = {};
 		this.particleNodeMap = {};
+
+		// setup neural network
+		this.setupNeuralNetwork();
+
+		// generate default ship layout
+		this.generateDefault();
 	}
 
 	generateDefault() {
@@ -18,7 +24,7 @@ class Ship {
 		this.generateFromSettings(shipSettings);
 	}
 
-	generateFromSettings(shipSettings) {		
+	generateFromSettings(shipSettings) {
 		// clear previous nodes and links and neurons
 		this.nodes = [];
 		this.links = [];
@@ -67,13 +73,24 @@ class Ship {
 				}
 			}
 		}
+
+		// randomize genome
+		var genome = this.neuralNetwork.getGenome();
+		genome.randomize();
+		this.neuralNetwork.setGenome(genome);
+	}
+
+	setupNeuralNetwork() {
+		// setup neural network
+		this.neuralNetwork = new NeuralNetwork();
+		this.neuronNodeMap = {};
 	}
 
 	setInputsForNeuralNetwork() {
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			if (this.nodes[ni].isSensor()) {
-				neuronNodeMap[this.nodes[ni].id].value = this.nodes[ni].value;
-				neuronNodeMap[this.nodes[ni].id].output = this.nodes[ni].value;
+				this.neuronNodeMap[this.nodes[ni].id].value = this.nodes[ni].value;
+				this.neuronNodeMap[this.nodes[ni].id].output = this.nodes[ni].value;
 			}
 		}
 	}
@@ -81,12 +98,18 @@ class Ship {
 	getOutputsFromNeuralNetwork() {
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			if (this.nodes[ni].isThruster()) {
-				this.nodes[ni].value = neuronNodeMap[this.nodes[ni].id].value;
+				this.nodes[ni].value = this.neuronNodeMap[this.nodes[ni].id].value;
 			}
 		}
 	}
 
 	update(deltaTime) {
+
+		// neural net step
+		this.setInputsForNeuralNetwork();
+		this.neuralNetwork.step();
+		this.getOutputsFromNeuralNetwork();
+
 		// Generate particle forces.
 		if (this.links !== undefined) {
 			for (var i = 0; i < this.links.length; i++) {
@@ -104,7 +127,7 @@ class Ship {
 		var particle = this.particleNodeMap[node.id];
 		if (keyIsDown(UP_ARROW))
 			particle.addForce(createVector(0, -200));
-		
+
 		// Set the nodes of the ship to be at respective particle positions.
 		if (this.nodes !== undefined) {
 			for (var i = 0; i < this.nodes.length; i++) {
