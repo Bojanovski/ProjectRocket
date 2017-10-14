@@ -1,17 +1,20 @@
 
 class GameState_Gameplay extends GameState {
 
-	constructor(gsm) {
+	constructor(gsm, seed) {
 		super(gsm);
+
+		this.seed = seed;
+		print("seed " + this.seed);
 
 		this.physicsEngine = new PhysicsEngine();
 		this.shipManager = new ShipManager();
 		this.level = new Level();
-		this.ship = this.shipManager.defaultShip;
 	}
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
+		this.ship.randomizeGenome();
 
 		// Create static colliders for rocks
 		for (var i = 0; i < this.level.rocks.length; i++) {
@@ -32,7 +35,7 @@ class GameState_Gameplay extends GameState {
 
 				if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
 					this.ship.thrusterParticles[node.id] = newParticle;
-					
+
 				}
 			}
 		}
@@ -42,10 +45,10 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
-		
+
 		// update the level
 		this.level.update(deltaTime);
-		
+
 		// Update the physics.
 		this.physicsEngine.update(deltaTime);
 

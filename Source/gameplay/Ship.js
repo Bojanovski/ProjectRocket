@@ -73,8 +73,9 @@ class Ship {
 				}
 			}
 		}
+	}
 
-		// randomize genome
+	randomizeGenome() {
 		var genome = this.neuralNetwork.getGenome();
 		genome.randomize();
 		this.neuralNetwork.setGenome(genome);
