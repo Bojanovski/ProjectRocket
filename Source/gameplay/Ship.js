@@ -65,7 +65,7 @@ class Ship {
 								var pipe = new Pipe([this.nodes[currentNodeContainerIndex], this.nodes[bottomNodeContainerIndex]]);
 								this.links.push(pipe);
 								// add a neural connection
-								var connection = [this.neuralNetwork.neurons[currentNodeContainerIndex], 0.5];
+								var connection = [neuron, 0.5];
 								this.neuralNetwork.neurons[bottomNodeContainerIndex].inputs.push(connection);
 							}
 						}
@@ -94,29 +94,28 @@ class Ship {
 			}
 		}
 	}
-	
+
 	update(deltaTime) {
-		
+
 		// Update the nodes
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			this.nodes[ni].update(deltaTime);
 		}
-		
+
 		// neural net step
 		this.setInputsForNeuralNetwork();
 		this.neuralNetwork.step();
-		
+
 		// Apply thrust.
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			if (this.nodes[ni].isThruster()) {
 				var particle = this.particleNodeMap[this.nodes[ni].id];
 				var value = this.neuronNodeMap[this.nodes[ni].id].value;
-				
+
 				particle.addForce(createVector(0, -100.0 * value));
-				//print(value);
 			}
 		}
-		
+
 		// Generate particle forces.
 		if (this.links !== undefined) {
 			for (var i = 0; i < this.links.length; i++) {

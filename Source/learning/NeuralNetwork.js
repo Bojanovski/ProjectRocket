@@ -39,4 +39,12 @@ class NeuralNetwork {
 		}
 	}
 
+	printValues() {
+		var message = "";
+		for (var i = 0; i < this.neurons.length; i++) {
+			message += this.neurons[i].value + " ";
+		}
+		print(message);
+	}
+
 }
