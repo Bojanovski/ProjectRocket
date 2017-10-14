@@ -42,6 +42,7 @@ class GameState_Gameplay extends GameState {
 		// neural net step
 		this.ship.neuralNetwork.step();
 		var genome = this.ship.neuralNetwork.getGenome();
+		genome.randomize();
 		this.ship.neuralNetwork.setGenome(genome);
 
 		// Generate particle forces.

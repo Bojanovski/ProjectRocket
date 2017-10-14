@@ -63,6 +63,12 @@ class Ship {
 		}
 	}
 
+	setInputsForNeuralNetwork() {
+	}
+
+	getOutputsFromNeuralNetwork() {
+	}
+
 	update() {
 	}
 
