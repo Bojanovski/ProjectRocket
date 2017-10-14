@@ -13,7 +13,9 @@ function setup() {
   gsm = new GameStateManager();
   var gsMainMenu = new GameState_MainMenu();
   var gsGameplay = new GameState_Gameplay();
-  gsm.pushState(gsGameplay);
+  var gsDesigner = new GameState_Designer();
+  //gsm.pushState(gsGameplay);
+  gsm.pushState(gsDesigner);
 }
 
 function draw() {

@@ -6,7 +6,7 @@ class Link {
 	}
 
 	update() {
-	}	
+	}
 
 	display(shipX, shipY) {
 
@@ -16,5 +16,5 @@ class Link {
 			strokeWeight(4);
 			line(shipX + this.nodes[0].x, shipY + this.nodes[0].y, shipX + this.nodes[1].x, shipY + this.nodes[1].y);
 		}
-	}	
+	}
 }
