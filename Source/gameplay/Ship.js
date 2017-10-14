@@ -97,7 +97,16 @@ class Ship {
 	}
 
 	update(deltaTime) {
-
+		
+		// Calculate sensor data.
+		var thrusterDir;
+		for (var ni = 0; ni < this.nodes.length; ni++) {
+			if (this.nodes[ni].isSensor()) {
+				this.nodes[ni].updateDir(this.nodes);
+				thrusterDir = this.nodes[ni].getDir();
+			}
+		}
+		
 		// Update the nodes
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			this.nodes[ni].update(deltaTime);
@@ -113,7 +122,10 @@ class Ship {
 				var particle = this.particleNodeMap[this.nodes[ni].id];
 				var value = this.neuronNodeMap[this.nodes[ni].id].value;
 
-				particle.addForce(createVector(0, -100.0 * value));
+				var forceVector = p5.Vector.mult(thrusterDir, -1000.0 * value);
+				particle.addForce(forceVector);
+				
+				print(-1000.0 * value);
 			}
 		}
 
