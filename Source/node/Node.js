@@ -14,7 +14,7 @@ class Node {
 		this.id = nodeIDCounter++;
 	}
 
-	update() {
+	update(deltaTime) {
 	}
 
 	display(shipX, shipY, color) {

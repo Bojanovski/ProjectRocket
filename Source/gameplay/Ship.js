@@ -1,3 +1,4 @@
+
 class Ship {
 
 	constructor(name, x, y) {
