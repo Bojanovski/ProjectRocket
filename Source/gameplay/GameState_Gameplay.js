@@ -14,6 +14,12 @@ class GameState_Gameplay extends GameState {
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
 		
+		// Create static colliders for rocks
+		for (var i = 0; i < this.level.rocks.length; i++) {
+			var rock = this.level.rocks[i];
+			this.physicsEngine.staticColliders.push(new StaticCollider(rock[0], rock[1], rock[2], rock[3]));
+		}
+		
 		// Create a particle for every node in the ship.
 		if (this.ship.nodes !== undefined) {
 			for (var i = 0; i < this.ship.nodes.length; i++) {
@@ -75,6 +81,16 @@ class GameState_Gameplay extends GameState {
 	}
 
 	display() {
+		
+		// Draw rocks
+		// Set colors
+		fill(204, 101, 192, 127);
+		stroke(127, 127, 127);
+		for (var i = 0; i < this.level.rocks.length; i++) {
+			var rock = this.level.rocks[i];
+			rect(rock[0], rock[1], rock[2], rock[3]);
+		}
+		
 		this.ship.display();
 	}
 
