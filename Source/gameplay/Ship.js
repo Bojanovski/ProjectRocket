@@ -97,6 +97,13 @@ class Ship {
 	
 	update(deltaTime) {
 		
+		// Calculate sensor data.
+		for (var ni = 0; ni < this.nodes.length; ni++) {
+			if (this.nodes[ni].isSensor()) {
+				this.nodes[ni].updateDir(this.nodes);
+			}
+		}
+		
 		// Update the nodes
 		for (var ni = 0; ni < this.nodes.length; ni++) {
 			this.nodes[ni].update(deltaTime);
