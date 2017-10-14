@@ -40,6 +40,9 @@ class GameState_MainMenu extends GameState {
 	deinitiate() {
 		this.designButton.remove();
 		this.playButton.remove();
+
+		this.emitter1.isActive = false;
+		this.emitter2.isActive = false;
 	}
 
 	update(deltaTime) {
