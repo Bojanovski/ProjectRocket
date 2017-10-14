@@ -12,5 +12,5 @@ class Thruster extends Node {
 		super.display(shipX, shipY, [255, 0, 0]);
 	}
 
-	isThruster() { return false; }
+	isThruster() { return true; }
 }
