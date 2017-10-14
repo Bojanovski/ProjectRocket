@@ -8,7 +8,7 @@ class GameState {
 
 	}
 
-	deintiate() {
+	deinitiate() {
 		
 	}
 

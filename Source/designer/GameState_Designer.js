@@ -1,6 +1,6 @@
+
 function designerDoneClicked(){
 	gsm.popState();
-	gsm.pushState(gsMainMenu);
 }
 
 class GameState_Designer extends GameState {

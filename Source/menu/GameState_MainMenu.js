@@ -1,10 +1,11 @@
+
 function designClicked(){
-	gsm.popState();
+	var gsDesigner = new GameState_Designer()
 	gsm.pushState(gsDesigner);
 }
 
 function playClicked(){
-	gsm.popState();
+	var gsGameplay = new GameState_Gameplay()
 	gsm.pushState(gsGameplay);
 }
 

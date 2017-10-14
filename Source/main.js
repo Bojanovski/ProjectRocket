@@ -1,8 +1,6 @@
 
 var gsm;
 var gsMainMenu;
-var gsGameplay;
-var gsDesigner;
 
 var unit;
 
@@ -18,8 +16,6 @@ function setup() {
 
   gsm = new GameStateManager();
   gsMainMenu = new GameState_MainMenu();
-  gsGameplay = new GameState_Gameplay();
-  gsDesigner = new GameState_Designer();
   //gsm.pushState(gsGameplay);
   //gsm.pushState(gsDesigner);
   gsm.pushState(gsMainMenu);

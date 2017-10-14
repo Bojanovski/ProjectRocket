@@ -22,15 +22,24 @@ class GameStateManager {
 	}
 
 	pushState(state) {
+		
+		// First deinitiate the state that is currently on top.
+		if (this.stack.length > 0) this.stack[this.stack.length - 1].deinitiate();
+		
+		// Now initiate the new sate and put it on top.
 		this.stack.push(state);
-		state.initiate();
 		print('GameStateManager: state ' + state.print() + ' pushed.');
+		state.initiate();
 	}
 
 	popState() {
+		// First deinitiate the state that is currently on top.
+		this.stack[this.stack.length - 1].deinitiate();
 		var state = this.stack.pop();
-		state.deinitiate();
 		print('GameStateManager: state ' + state.print() + ' poped.');
+		
+		// Now initiate the old sate that is now on top.
+		this.stack[this.stack.length - 1].initiate();
 	}
 
 }
