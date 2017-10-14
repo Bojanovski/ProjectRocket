@@ -15,7 +15,7 @@ function setup() {
   scoreElem.style('color', 'white');
 
   gsm = new GameStateManager();
-  var gsFirst = new GameState_MainMenu();
+  var gsFirst = new GameState_Gameplay();
   //gsm.pushState(gsGameplay);
   //gsm.pushState(gsDesigner);
   gsm.pushState(gsFirst);
