@@ -13,11 +13,11 @@ class GameState_Gameplay extends GameState {
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
-
+		
 		// Create static colliders for rocks
 		for (var i = 0; i < this.level.rocks.length; i++) {
 			var rock = this.level.rocks[i];
-			this.physicsEngine.staticColliders.push(new StaticCollider(rock[0], rock[1], rock[2], rock[3]));
+			this.physicsEngine.staticColliders.push(new StaticCollider(rock.points[0], rock.points[1], rock.points[2], rock.points[3]));
 		}
 
 		// Create a particle for every node in the ship.
