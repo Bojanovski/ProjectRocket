@@ -9,12 +9,12 @@ class GameState_Gameplay extends GameState {
 
 		this.physicsEngine = new PhysicsEngine();
 		this.shipManager = new ShipManager();
-		this.level = new Level();
+		this.level = new Level(this.seed);
 	}
 
 	initiate() {
 		this.ship = this.shipManager.defaultShip;
-		this.ship.randomizeGenome();
+		this.ship.initiate(random(10000));
 
 		// Create static colliders for rocks
 		for (var i = 0; i < this.level.rocks.length; i++) {

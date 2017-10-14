@@ -6,6 +6,7 @@ class Ship {
 		this.name = name;
 		this.x = x;
 		this.y = y;
+		this.localSeed = 0;
 
 		// physics fields
 		this.thrusterParticles = {};
@@ -75,7 +76,12 @@ class Ship {
 		}
 	}
 
-	randomizeGenome() {
+	initiate(localSeed) {
+		// seed for random genome
+		this.localSeed = localSeed;
+		randomSeed(this.localSeed);
+
+		// randomize genome
 		var genome = this.neuralNetwork.getGenome();
 		genome.randomize();
 		this.neuralNetwork.setGenome(genome);
