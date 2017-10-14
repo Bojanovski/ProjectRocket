@@ -9,10 +9,10 @@ class Particle{
 	
 	update(dt) {
 		
-		this.vel = add(this.vel, mult(this.acc, dt));
-		this.pos = add(this.pos, mult(this.vel, dt));
+		this.vel = p5.Vector.add(this.vel, p5.Vector.mult(this.acc, dt));
+		this.pos = p5.Vector.add(this.pos, p5.Vector.mult(this.vel, dt));
 		
 		// Resets the acceleration accumulator
-		this.acc.set(0, 0);
+		this.acc.set(0, 9.81);
 	}
 }

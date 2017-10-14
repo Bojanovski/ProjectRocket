@@ -1,3 +1,6 @@
+
+var nodeIDCounter = 0;
+
 class Node {
 
 	constructor(x, y, r, m) {
@@ -5,6 +8,8 @@ class Node {
 		this.y = y;
 		this.r = r;
 		this.m = m;
+		
+		this.id = nodeIDCounter++;
 	}
 
 	update() {
