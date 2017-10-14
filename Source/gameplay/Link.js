@@ -1,7 +1,11 @@
+
+var elasticityCoefficient = 100.1;
+
 class Link {
 
 	constructor(nodes) {
 		this.nodes = nodes;
+		this.restingLength = Math.sqrt(Math.pow(nodes[0].x - nodes[1].x, 2) + Math.pow(nodes[0].y - nodes[1].y, 2));
 	}
 
 	update() {
