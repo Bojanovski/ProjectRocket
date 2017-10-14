@@ -43,6 +43,9 @@ class GameState_Gameplay extends GameState {
 
 	update(deltaTime) {
 		
+		// update the level
+		this.level.update(deltaTime);
+		
 		// Update the physics.
 		this.physicsEngine.update(deltaTime);
 

@@ -113,7 +113,7 @@ class Ship {
 				var value = this.neuronNodeMap[this.nodes[ni].id].value;
 				
 				particle.addForce(createVector(0, -100.0 * value));
-				print(value);
+				//print(value);
 			}
 		}
 		
@@ -128,7 +128,7 @@ class Ship {
 				applyHookeLaw(particle1, particle2, restingLength);
 			}
 		}
-		
+
 		// temp testing code
 		var node = this.nodes[0];
 		var particle = this.particleNodeMap[node.id];
