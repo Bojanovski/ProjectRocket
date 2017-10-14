@@ -68,15 +68,7 @@ class GameState_Gameplay extends GameState {
 	}
 
 	display() {
-
-		// Draw rocks
-		fill(127, 127, 127, 127);
-		stroke(147, 147, 147);
-		for (var i = 0; i < this.level.rocks.length; i++) {
-			var rock = this.level.rocks[i];
-			rect(rock[0], rock[1], rock[2], rock[3]);
-		}
-
+		this.level.display();
 		this.ship.display();
 	}
 
