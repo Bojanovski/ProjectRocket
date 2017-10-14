@@ -6,6 +6,7 @@ class Ship {
 		this.y = y;
 		this.neuralNetwork = new NeuralNetwork();
 		this.generateDefault();
+		this.thrusterParticles = {};
 	}
 
 	generateDefault() {
@@ -14,7 +15,7 @@ class Ship {
 		this.generateFromSettings(shipSettings);
 	}
 
-	generateFromSettings(shipSettings) {
+	generateFromSettings(shipSettings) {		
 		// clear previous nodes and links and neurons
 		this.nodes = [];
 		this.links = [];

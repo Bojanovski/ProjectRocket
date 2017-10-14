@@ -30,6 +30,10 @@ class GameState_Gameplay extends GameState {
 				var newParticle = new Particle(posX, posY, node.r);
 				this.physicsEngine.particles.push(newParticle);
 				this.particleNodeMap[node.id] = newParticle;
+				
+				if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
+					this.ship.thrusterParticles[node.id] = newParticle;
+				}
 			}
 		}
 	}
