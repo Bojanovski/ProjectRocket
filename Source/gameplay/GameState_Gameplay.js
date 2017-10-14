@@ -42,8 +42,11 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
-		
-		// Update the particles.
+
+		// update the level
+		this.level.update(deltaTime);
+
+		// update the particles.
 		this.physicsEngine.update(deltaTime);
 
 		// call ship update

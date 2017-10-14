@@ -94,20 +94,11 @@ class Ship {
 		}
 	}
 
-	getOutputsFromNeuralNetwork() {
-		for (var ni = 0; ni < this.nodes.length; ni++) {
-			if (this.nodes[ni].isThruster()) {
-				this.nodes[ni].value = this.neuronNodeMap[this.nodes[ni].id].value;
-			}
-		}
-	}
-
 	update(deltaTime) {
 
 		// neural net step
 		this.setInputsForNeuralNetwork();
 		this.neuralNetwork.step();
-		this.getOutputsFromNeuralNetwork();
 
 		// Generate particle forces.
 		if (this.links !== undefined) {
@@ -120,7 +111,7 @@ class Ship {
 				applyHookeLaw(particle1, particle2, restingLength);
 			}
 		}
-		
+
 		// temp testing code
 		var node = this.nodes[0];
 		var particle = this.particleNodeMap[node.id];
