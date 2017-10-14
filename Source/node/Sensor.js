@@ -2,7 +2,8 @@ class Sensor extends Node {
 
 	constructor(x, y, r) {
 		super(x, y, r);
-		this.dir = createVector(0, 0);
+		this.dir;
+		this.signalValue;
 	}
 
 	update(deltaTime) {
@@ -26,7 +27,7 @@ class Sensor extends Node {
 		var sign = p5.Vector.dot(this.dir, createVector(1.0, 0.0));
 		if (sign < 0.0) sign = -1.0;
 		else sign = 1.0;
-		var signalValue = sign * angleNormalized;
+		this.signalValue = sign * angleNormalized;
 	}
 	
 	isSensor() { return true; }

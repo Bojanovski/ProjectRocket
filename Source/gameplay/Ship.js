@@ -124,7 +124,7 @@ class Ship {
 				var forceVector = p5.Vector.mult(thrusterDir, -1000.0 * value);
 				particle.addForce(forceVector);
 				
-				print(-1000.0 * value);
+				//print(forceVector);
 			}
 		}
 
