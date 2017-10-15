@@ -33,7 +33,7 @@ class GameState_Gameplay extends GameState {
 	}
 
 	initiate() {
-		this.startSimulation(this.shipManager.defaultShip, 10);
+		this.startSimulation(this.shipManager.defaultShip, 1);
 	}
 
 	deinitiate() {
@@ -49,7 +49,7 @@ class GameState_Gameplay extends GameState {
 
 		// Update the ship
 		for (var i = 0; i < this.ships.length; i++) {
-			this.ships[i].update(deltaTime);
+			this.ships[i].update(deltaTime, this.level.rocks);
 		}
 	}
 

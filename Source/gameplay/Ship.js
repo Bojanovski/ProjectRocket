@@ -21,7 +21,7 @@ class Ship {
 
 	generateDefault() {
 		var shipSettings = new ShipSettings();
-		shipSettings.layout = [[1,1], [0,0,0], [2]];
+		shipSettings.layout = [[1,1], [0,0,0], [3,2,3]];
 		this.generateFromSettings(shipSettings);
 	}
 
@@ -45,7 +45,8 @@ class Ship {
 						var node;
 						if (type == 0) node = new Cell(x, y, r);
 						else if (type == 1) node = new Thruster(x, y, r);
-						else if (type == 2) node = new Sensor(x, y, r);
+						else if (type == 2) node = new RotationSensor(x, y, r);
+						else if (type == 3) node = new DistanceSensor(x, y, r);
 						this.nodes.push(node);
 						// add a neuron
 						var neuron = new Neuron();
@@ -112,21 +113,23 @@ class Ship {
 
 	setInputsForNeuralNetwork() {
 		for (var ni = 0; ni < this.nodes.length; ni++) {
-			if (this.nodes[ni].isSensor()) {
+			if (this.nodes[ni].isRotationSensor()) {
 				this.neuronNodeMap[this.nodes[ni].id].value = this.nodes[ni].signalValue;
 				this.neuronNodeMap[this.nodes[ni].id].output = this.nodes[ni].signalValue;
 			}
 		}
 	}
 
-	update(deltaTime) {
+	update(deltaTime, listOfRocks) {
 
 		// Calculate sensor data.
-		var thrusterDir;
+		var thrusterDir = createVector(0, -1);
 		for (var ni = 0; ni < this.nodes.length; ni++) {
-			if (this.nodes[ni].isSensor()) {
+			if (this.nodes[ni].isRotationSensor()) {
 				this.nodes[ni].updateDir(this.nodes);
 				thrusterDir = this.nodes[ni].getDir();
+			} else if (this.nodes[ni].isDistanceSensor()) {
+				this.nodes[ni].updateDistance(listOfRocks);
 			}
 		}
 

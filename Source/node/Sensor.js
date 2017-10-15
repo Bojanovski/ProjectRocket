@@ -8,7 +8,18 @@ class Sensor extends Node {
 
 	update(deltaTime) {
 	}
+	
+	isSensor() { return true; }
+}
 
+class RotationSensor extends Sensor {
+
+	constructor(x, y, r) {
+		super(x, y, r);
+		this.dir;
+		this.signalValue;
+	}
+	
 	display(shipX, shipY) {
 		super.display(shipX, shipY, [0, 0, 255]);
 	}
@@ -30,9 +41,34 @@ class Sensor extends Node {
 		this.signalValue = sign * angleNormalized;
 	}
 	
-	isSensor() { return true; }
+	isRotationSensor() { return true; }
 	
 	getDir() {
 		return this.dir;
+	}
+}
+
+class DistanceSensor extends Sensor {
+
+	constructor(x, y, r) {
+		super(x, y, r);
+		this.distance;
+		this.signalValue;
+	}
+	
+	display(shipX, shipY) {
+		super.display(shipX, shipY, [50, 180, 200]);
+	}
+	
+	updateDistance(listOfRocks) {
+		
+		//print(listOfRocks.length);
+		
+	}
+	
+	isDistanceSensor() { return true; }
+	
+	getDist() {
+		return this.distance;
 	}
 }

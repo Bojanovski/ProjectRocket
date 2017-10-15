@@ -26,4 +26,6 @@ class Node {
 
 	isThruster() { return false; }
 	isSensor() { return false; }
+	isRotationSensor() { return false; }
+	isDistanceSensor() { return false; }
 }
