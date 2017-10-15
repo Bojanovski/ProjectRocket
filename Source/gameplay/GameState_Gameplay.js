@@ -16,12 +16,12 @@ class GameState_Gameplay extends GameState {
 
 		// build level
 		this.level = new Level(this.seed);
-
+		
 		// spawn ships
 		this.ships = [];
 		for (var i = 0; i < numberOfShips; i++) {
 			var ship = _.cloneDeep(shipPrototype);
-			ship.initiate(random(10000));
+			ship.initiate(random(10000), this.physicsEngine);
 			this.ships.push(ship);
 		}
 
@@ -30,29 +30,10 @@ class GameState_Gameplay extends GameState {
 			var rock = this.level.rocks[i];
 			this.physicsEngine.staticColliders.push(new StaticCollider(rock.points[0], rock.points[1], rock.points[2], rock.points[3]));
 		}
-
-		// Create a particle for every node in the ship.
-		for (var i = 0; i < this.ships.length; i++) {
-			if (this.ships[i] !== undefined && this.ships[i].nodes !== undefined) {
-					for (var i = 0; i < this.ships[i].nodes.length; i++) {
-
-					var node = this.ships[i].nodes[i];
-					var posX = node.x;
-					var posY = node.y;
-					var newParticle = new Particle(posX, posY, node.r);
-					this.physicsEngine.particles.push(newParticle);
-					this.ships[i].particleNodeMap[node.id] = newParticle;
-
-					if (node.isThruster()) { // ship needs to apply forces to thrusters (the actual thrust).
-						this.ships[i].thrusterParticles[node.id] = newParticle;
-					}
-				}
-			}
-		}
 	}
 
 	initiate() {
-		this.startSimulation(this.shipManager.defaultShip, 1);
+		this.startSimulation(this.shipManager.defaultShip, 10);
 	}
 
 	deinitiate() {
