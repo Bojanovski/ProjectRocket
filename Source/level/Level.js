@@ -10,7 +10,7 @@ class Level {
 
 	generateGround() {
 		randomSeed(this.seed + 2142);
-		var numberOfGroundPlates = 11;
+		var numberOfGroundPlates = 1;
 		var currentX = - width;
 		var groundPlateWidth = width * 2.0 / numberOfGroundPlates;
 		for (var i = 0; i < numberOfGroundPlates; i++)
@@ -20,6 +20,8 @@ class Level {
 			this.rocks.push(new Rock([currentX, this.floorLevel - groundPlateHeight, groundPlateWidth, groundPlateHeight]));
 			currentX += groundPlateWidth;
 		}
+		
+		this.rocks.push(new Rock([-250, -250, 200, 50]));
 	}
 
 	generatePlatforms(seed) {

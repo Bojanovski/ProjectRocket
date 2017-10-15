@@ -1,6 +1,7 @@
 
 var gsm;
 var FPS = 60;
+var timeMul = 2.0;
 
 var unit;
 
@@ -24,5 +25,5 @@ function setup() {
 
 function draw() {
   background(10);
-  gsm.tick(1/FPS);
+  gsm.tick(timeMul * 1.0 / FPS);
 }

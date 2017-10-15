@@ -20,7 +20,7 @@ class Ship {
 
 	generateDefault() {
 		var shipSettings = new ShipSettings();
-		shipSettings.layout = [[1,1], [0,0,0], [3,2,3]];
+		shipSettings.layout = [[1,1], [0,0,0], [2]];
 		this.generateFromSettings(shipSettings);
 	}
 
@@ -106,9 +106,9 @@ class Ship {
 
 	setInputsForNeuralNetwork() {
 		for (var ni = 0; ni < this.nodes.length; ni++) {
-			if (this.nodes[ni].isRotationSensor()) {
-				this.neuronNodeMap[this.nodes[ni].id].value = this.nodes[ni].signalValue;
-				this.neuronNodeMap[this.nodes[ni].id].output = this.nodes[ni].signalValue;
+			if (this.nodes[ni].isSensor() ) {
+				this.neuronNodeMap[this.nodes[ni].id].value = 10.0 * this.nodes[ni].signalValue;
+				this.neuronNodeMap[this.nodes[ni].id].output = 10.0 * this.nodes[ni].signalValue;
 			}
 		}
 	}

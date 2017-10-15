@@ -4,6 +4,7 @@ class GameState_Gameplay extends GameState {
 	constructor(gsm, seed) {
 		super(gsm);
 
+		this.timeRunning = 0.0;
 		this.seed = seed;
 		print("seed " + this.seed);
 
@@ -14,7 +15,9 @@ class GameState_Gameplay extends GameState {
 	}
 
 	initiate() {
-
+		
+		this.timeRunning = 0.0;
+		
 		// get ship prototype
 		var shipPrototype = this.shipManager.defaultShip;
 
@@ -29,11 +32,15 @@ class GameState_Gameplay extends GameState {
 	}
 
 	update(deltaTime) {
+		this.timeRunning += deltaTime;
 		// simulation update
 		this.updateSimulation(deltaTime);
 	}
 
 	display() {
+		
+		translate(width/2, height/2 + this.timeRunning * 20.0);
+		
 		this.level.display();
 
 		for (var i = 0; i < this.ships.length; i++) {
@@ -43,9 +50,11 @@ class GameState_Gameplay extends GameState {
 
 	startSimulation() {
 
+		this.timeRunning = 0.0;
+		
 		// simulation basics
 		this.simulationTimer = 0.0;
-		this.simulationDuration = 10.0;
+		this.simulationDuration = 30.0;
 		this.simulationStatus = "on";
 
 		// build level

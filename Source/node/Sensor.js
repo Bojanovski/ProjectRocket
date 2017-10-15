@@ -72,24 +72,23 @@ class DistanceSensor extends Sensor {
 	constructor(x, y, r) {
 		super(x, y, r);
 		// basically a distance value
-		this.signalValue = 100000.0;
+		this.signalValue = 0.0;
 		this.closestPoint;
 	}
 	
 	display(shipX, shipY) {
 		super.display(shipX, shipY, [50, 180, 200]);
 		
-		
-		if (this.signalValue !== 100000.0) {
-			stroke([50, 180, 200]);
-			strokeWeight(2);
-			line(this.closestPoint.x, this.closestPoint.y, this.x, this.y);
-		}
+		//if (this.signalValue !== 0.0) {
+		//	stroke([50, 180, 200]);
+		//	strokeWeight(2);
+		//	line(this.closestPoint.x, this.closestPoint.y, this.x, this.y);
+		//}
 	}
 	
 	updateDistance(listOfRocks) {
 		
-		this.signalValue = 100000.0;
+		var distance = 100000.0;
 		var myPos = createVector(this.x, this.y);
 		for (var i = 0; i < listOfRocks.length; i++) { // for each rock
 			var rock = listOfRocks[i];
@@ -118,16 +117,16 @@ class DistanceSensor extends Sensor {
 				}
 			}
 			
-			if (dist[smallestI] < this.signalValue) {
-				this.signalValue = dist[smallestI];
+			if (dist[smallestI] < distance) {
+				distance = dist[smallestI];
 				this.closestPoint = points[smallestI];
 			}
-			
 		}
 		
-		this.signalValue = 0;
-		//print(listOfRocks.length);
-		
+		this.signalValue = 1.0 - (distance / windowWidth);
+		if (this.signalValue > 1.0) this.signalValue = 1.0;
+		if (this.signalValue < 0.0) this.signalValue = 0.0;
+		//print(this.signalValue);		
 	}
 	
 	isDistanceSensor() { return true; }
