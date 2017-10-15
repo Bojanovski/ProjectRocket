@@ -1,3 +1,4 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 class Level {
 
@@ -20,7 +21,7 @@ class Level {
 			this.rocks.push(new Rock([currentX, this.floorLevel - groundPlateHeight, groundPlateWidth, groundPlateHeight]));
 			currentX += groundPlateWidth;
 		}
-		
+
 		this.rocks.push(new Rock([-250, -250, 200, 50]));
 	}
 

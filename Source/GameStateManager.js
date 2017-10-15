@@ -1,3 +1,4 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 class GameStateManager {
 
@@ -21,10 +22,10 @@ class GameStateManager {
 	}
 
 	pushState(state) {
-		
+
 		// First deinitiate the state that is currently on top.
 		if (this.stack.length > 0) this.stack[this.stack.length - 1].deinitiate();
-		
+
 		// Now initiate the new sate and put it on top.
 		this.stack.push(state);
 		print('GameStateManager: state ' + state.print() + ' pushed.');
@@ -36,7 +37,7 @@ class GameStateManager {
 		this.stack[this.stack.length - 1].deinitiate();
 		var state = this.stack.pop();
 		print('GameStateManager: state ' + state.print() + ' poped.');
-		
+
 		// Now initiate the old sate that is now on top.
 		this.stack[this.stack.length - 1].initiate();
 	}

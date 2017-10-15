@@ -1,3 +1,5 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
+
 class ShipManager {
 
   constructor() {
@@ -16,5 +18,5 @@ class ShipManager {
       }
     }
   }
-  
+
 }
