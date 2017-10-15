@@ -1,8 +1,10 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
+
 class Thruster extends Node {
 
 	constructor(x, y, r) {
 		super(x, y, r);
-		
+
 		this.thrusterDir = createVector(0.0, 1.0);
 		this.thrusterOn = false;
 		this.emitter = new ParticleEmitter();

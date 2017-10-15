@@ -1,3 +1,4 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 function designerDoneClicked(){
 	gsm.popState();

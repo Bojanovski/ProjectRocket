@@ -1,3 +1,4 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 class GameState {
 
@@ -10,7 +11,7 @@ class GameState {
 	}
 
 	deinitiate() {
-		
+
 	}
 
 	update(deltaTime) {

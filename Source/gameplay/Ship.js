@@ -1,3 +1,4 @@
+// Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 class Ship {
 
@@ -201,7 +202,7 @@ class Ship {
 		//fill(0, 255, 0);
 		//ellipse(this.x, this.y, 10, 10);
 	}
-	
+
 	centerOfMass() {
 		var center = createVector(0, 0);
 		if (this.nodes !== undefined) {
