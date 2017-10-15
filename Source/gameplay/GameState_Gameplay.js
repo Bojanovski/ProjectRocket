@@ -28,7 +28,7 @@ class GameState_Gameplay extends GameState {
 		var shipPrototype = this.shipManager.defaultShip;
 
 		// populate genetic algorithm
-		this.geneticAlgorithm.populate(this.seed, shipPrototype, 50);
+		this.geneticAlgorithm.populate(this.seed, shipPrototype, 20);
 
 		// first simulation start
 		this.startSimulation();

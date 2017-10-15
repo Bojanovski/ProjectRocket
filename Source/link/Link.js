@@ -1,7 +1,7 @@
 // Copyright 2017 Bojan Lovrovic, Jakub Lawicki, Stanislaw Rymkiewicz
 
 var elasticityCoefficient = 100.0;
-var dampingCoefficient = 0.3;
+var dampingCoefficient = 0.2;
 
 class Link {
 
