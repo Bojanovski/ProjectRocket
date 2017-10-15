@@ -14,10 +14,7 @@ class GameState_Gameplay extends GameState {
 		this.geneticAlgorithm = new GeneticAlgorithm();
 		this.ships = [];
 
-		var scoreElem = createDiv('POWER');
-		scoreElem.position(width/2 * 1.85, height/2 * 0.34);
-		scoreElem.id = 'score';
-		scoreElem.style('color', 'white');
+		
 	}
 
 	initiate() {
