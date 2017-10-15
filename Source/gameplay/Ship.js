@@ -21,7 +21,7 @@ class Ship {
 
 	generateDefault() {
 		var shipSettings = new ShipSettings();
-		shipSettings.layout = [[1,1], [0,0,0], [2]];
+		shipSettings.layout = [[1,1], [0,0],[0,0], [2]];
 		this.generateFromSettings(shipSettings);
 	}
 
