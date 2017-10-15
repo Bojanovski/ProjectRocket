@@ -6,7 +6,6 @@ class Ship {
 		this.name = name;
 		this.x = x;
 		this.y = y;
-		this.localSeed = 0;
 
 		// physics fields
 		this.thrusterParticles = {};
@@ -77,16 +76,10 @@ class Ship {
 		}
 	}
 
-	initiate(localSeed, physicsEngine) {
-		// seed for random genome
-		this.localSeed = localSeed;
-		randomSeed(this.localSeed);
-
-		// randomize genome
-		var genome = this.neuralNetwork.getGenome();
-		genome.randomize();
+	initiate(genome, physicsEngine) {
+		// set genome
 		this.neuralNetwork.setGenome(genome);
-		
+
 		// Create a particle for every node in the ship.
 		if (this.nodes !== undefined) {
 				for (var i = 0; i < this.nodes.length; i++) {
@@ -147,7 +140,7 @@ class Ship {
 			if (this.nodes[ni].isThruster()) {
 				var particle = this.particleNodeMap[this.nodes[ni].id];
 				var value = this.neuronNodeMap[this.nodes[ni].id].value;
-				
+
 				if (value > 0.0) {
 					//value = 1.0;
 					this.nodes[ni].thrusterDir = p5.Vector.mult(thrusterDir, -1.0);
