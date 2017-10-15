@@ -20,9 +20,9 @@ class GameState_Gameplay extends GameState {
 	}
 
 	initiate() {
-		
+
 		this.timeRunning = 0.0;
-		
+
 		// get ship prototype
 		var shipPrototype = this.shipManager.defaultShip;
 
@@ -43,11 +43,24 @@ class GameState_Gameplay extends GameState {
 	}
 
 	display() {
-		
-		translate(width/2, height/2 + this.timeRunning * 20.0);
-		
-		this.level.display();
 
+		// get center of the best ship
+		var bestX = 0.0;
+		var bestY = 0.0;
+		for (var i = 0; i < this.ships.length; i++) {
+			var currX = this.ships[i].nodes[0].x;
+			var currY = this.ships[i].nodes[0].y;
+			if (currY < bestY) {
+				bestX = currX;
+				bestY = currY;
+			}
+		}
+
+		// follow the winner
+		translate(width/2 - bestX, height/2 - bestY);
+
+		// display level and ships
+		this.level.display();
 		for (var i = 0; i < this.ships.length; i++) {
 			this.ships[i].display();
 		}
@@ -67,7 +80,7 @@ class GameState_Gameplay extends GameState {
 	startSimulation() {
 
 		this.timeRunning = 0.0;
-		
+
 		// simulation basics
 		this.simulationTimer = 0.0;
 		this.simulationDuration = 30.0;
@@ -95,7 +108,7 @@ class GameState_Gameplay extends GameState {
 	}
 
 	updateSimulation(deltaTime) {
-		
+
 		// check if playing
 		if (this.simulationStatus == "on") {
 
