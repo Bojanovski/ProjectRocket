@@ -14,7 +14,10 @@ class GameState_Gameplay extends GameState {
 		this.geneticAlgorithm = new GeneticAlgorithm();
 		this.ships = [];
 
-		
+		var scoreElem = createDiv('POWER');
+		scoreElem.position(width/2 * 1.85, height/2 * 0.34);
+		scoreElem.id = 'score';
+		scoreElem.style('color', 'white');
 	}
 
 	initiate() {
@@ -69,7 +72,7 @@ class GameState_Gameplay extends GameState {
 		strokeWeight(3);
 		rect(width/2 - 60.0 + bestX, -200.0 + bestY,
 		
-		width * 0.02, height * 0.5);
+		width * 0.025, height * 0.5);
 		
 		//20, 450);
 
@@ -77,7 +80,7 @@ class GameState_Gameplay extends GameState {
 		stroke(250);
 		strokeWeight(3);
 		rect(width/2 - 60.0 + bestX, -200.0 + bestY,
-		width * 0.02, (this.simulationTimer / this.simulationDuration) * height * 0.5);
+		width * 0.025, (this.simulationTimer / this.simulationDuration) * height * 0.5);
 	}
 
 	startSimulation() {
