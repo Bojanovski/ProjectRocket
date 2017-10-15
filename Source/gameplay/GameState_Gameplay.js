@@ -69,12 +69,12 @@ class GameState_Gameplay extends GameState {
 		fill(250);
 		stroke(250);
 		strokeWeight(3);
-		rect(width/2 - 50.0, -200.0 -this.timeRunning * 20.0, 20, 450);
+		rect(width/2 - 60.0 + bestX, -200.0 + bestY, 20, 450);
 		
 		fill(0);
 		stroke(250);
 		strokeWeight(3);
-		rect(width/2 - 50.0, -200.0 -this.timeRunning * 20.0, 20, (this.simulationTimer / this.simulationDuration) * 450);
+		rect(width/2 - 60.0 + bestX, -200.0 + bestY, 20, (this.simulationTimer / this.simulationDuration) * 450);
 	}
 
 	startSimulation() {
