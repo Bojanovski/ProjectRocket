@@ -16,7 +16,7 @@ function setup() {
 
   gsm = new GameStateManager();
   //var gsFirst = new GameState_MainMenu(gsm);
-  var gsFirst = new GameState_Gameplay(gsm,777);
+  var gsFirst = new GameState_Gameplay(gsm,random(10000));
   //gsm.pushState(gsGameplay);
   //gsm.pushState(gsDesigner);
   gsm.pushState(gsFirst);

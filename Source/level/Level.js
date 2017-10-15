@@ -1,13 +1,15 @@
 
 class Level {
 
-	constructor() {
+	constructor(seed) {
+		this.seed = seed;
 		this.floorLevel = height / 2.0;
 		this.rocks = [];
-		this.generateGround(666);
+		this.generateGround();
 	}
 
-	generateGround(seed) {
+	generateGround() {
+		randomSeed(this.seed + 2142);
 		var numberOfGroundPlates = 11;
 		var currentX = - width;
 		var groundPlateWidth = width * 2.0 / numberOfGroundPlates;
