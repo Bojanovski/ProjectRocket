@@ -22,10 +22,13 @@ class Level {
 			currentX += groundPlateWidth;
 		}
 		
-		this.rocks.push(new Rock([200, -650, 600, 70]));
-		this.rocks.push(new Rock([-600, -550, 600, 70]));
-		this.rocks.push(new Rock([-800, -350, 600, 70]));
-		this.rocks.push(new Rock([180, -250, 400, 70]));
+		this.rocks.push(new Rock([200, -900, 600, 120]));
+		this.rocks.push(new Rock([-750, -740, 600, 90]));
+		
+		this.rocks.push(new Rock([230, -650, 600, 70]));
+		this.rocks.push(new Rock([-600, -550, 500, 80]));
+		this.rocks.push(new Rock([-800, -350, 500, 75]));
+		this.rocks.push(new Rock([180, -250, 400, 40]));
 	}
 
 	generatePlatforms(seed) {

@@ -28,7 +28,7 @@ class GameState_Gameplay extends GameState {
 		var shipPrototype = this.shipManager.defaultShip;
 
 		// populate genetic algorithm
-		this.geneticAlgorithm.populate(this.seed, shipPrototype, 30);
+		this.geneticAlgorithm.populate(this.seed, shipPrototype, 50);
 
 		// first simulation start
 		this.startSimulation();
@@ -70,12 +70,17 @@ class GameState_Gameplay extends GameState {
 		fill(250);
 		stroke(250);
 		strokeWeight(3);
-		rect(width/2 - 60.0 + bestX, -200.0 + bestY, 20, 450);
+		rect(width/2 - 60.0 + bestX, -200.0 + bestY,
+		
+		width * 0.02, height * 0.5);
+		
+		//20, 450);
 
 		fill(0);
 		stroke(250);
 		strokeWeight(3);
-		rect(width/2 - 60.0 + bestX, -200.0 + bestY, 20, (this.simulationTimer / this.simulationDuration) * 450);
+		rect(width/2 - 60.0 + bestX, -200.0 + bestY,
+		width * 0.02, (this.simulationTimer / this.simulationDuration) * height * 0.5);
 	}
 
 	startSimulation() {
