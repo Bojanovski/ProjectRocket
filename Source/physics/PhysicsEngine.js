@@ -5,7 +5,6 @@ class Contact{
 		this.particle = particle;
 		this.staticCollider = staticCollider;
 	}
-	
 }
 
 function applyHookeLaw(particle1, particle2, restingLength) {
@@ -18,6 +17,17 @@ function applyHookeLaw(particle1, particle2, restingLength) {
 	particle2.addForce(force);
 	var forceNeg = p5.Vector.mult(force, -1.0);
 	particle1.addForce(forceNeg);
+}
+
+function applyDamping(particle1, particle2) {
+	var diff = p5.Vector.sub(particle1.pos, particle2.pos);
+	var dir = diff;
+	dir.normalize();
+	var velocityDiff = p5.Vector.sub(particle1.vel, particle2.vel);
+	var velocityDiffProj1 = p5.Vector.mult(dir, -0.5 * dampingCoefficient * p5.Vector.dot(dir, velocityDiff));
+	var velocityDiffProj2 = p5.Vector.mult(dir, 0.5 * dampingCoefficient * p5.Vector.dot(dir, velocityDiff));
+	particle1.vel = p5.Vector.add(particle1.vel, velocityDiffProj1);
+	particle2.vel = p5.Vector.add(particle2.vel, velocityDiffProj2);
 }
 
 class PhysicsEngine{

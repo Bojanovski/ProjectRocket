@@ -150,6 +150,7 @@ class Ship {
 				var particle1 = this.particleNodeMap[node1.id];
 				var particle2 = this.particleNodeMap[node2.id];
 				applyHookeLaw(particle1, particle2, restingLength);
+				applyDamping(particle1,  particle2);
 			}
 		}
 
