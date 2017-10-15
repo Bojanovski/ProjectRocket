@@ -12,6 +12,11 @@ class GameState_Gameplay extends GameState {
 		this.shipManager = new ShipManager();
 		this.geneticAlgorithm = new GeneticAlgorithm();
 		this.ships = [];
+		
+		var scoreElem = createDiv('POWER');
+		scoreElem.position(920, 140);
+		scoreElem.id = 'score';
+		scoreElem.style('color', 'white');
 	}
 
 	initiate() {
@@ -22,7 +27,7 @@ class GameState_Gameplay extends GameState {
 		var shipPrototype = this.shipManager.defaultShip;
 
 		// populate genetic algorithm
-		this.geneticAlgorithm.populate(this.seed, shipPrototype, 10);
+		this.geneticAlgorithm.populate(this.seed, shipPrototype, 30);
 
 		// first simulation start
 		this.startSimulation();
@@ -46,6 +51,17 @@ class GameState_Gameplay extends GameState {
 		for (var i = 0; i < this.ships.length; i++) {
 			this.ships[i].display();
 		}
+		
+		// Power bar
+		fill(250);
+		stroke(250);
+		strokeWeight(3);
+		rect(width/2 - 50.0, -200.0 -this.timeRunning * 20.0, 20, 450);
+		
+		fill(0);
+		stroke(250);
+		strokeWeight(3);
+		rect(width/2 - 50.0, -200.0 -this.timeRunning * 20.0, 20, (this.simulationTimer / this.simulationDuration) * 450);
 	}
 
 	startSimulation() {

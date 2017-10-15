@@ -197,9 +197,9 @@ class Ship {
 				this.nodes[i].display(this.x, this.y);
 			}
 		}
-		// print ship center point
-		fill(0, 255, 0);
-		ellipse(this.x, this.y, 10, 10);
+		//// print ship center point
+		//fill(0, 255, 0);
+		//ellipse(this.x, this.y, 10, 10);
 	}
 	
 	centerOfMass() {

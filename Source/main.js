@@ -1,7 +1,7 @@
 
 var gsm;
 var FPS = 60;
-var timeMul = 2.0;
+var timeMul = 4.0;
 
 var unit;
 
@@ -9,11 +9,6 @@ function setup() {
   createCanvas(windowWidth,windowHeight);
   frameRate(FPS);
   unit = windowHeight / 100;
-
-  scoreElem = createDiv('Score = 0');
-  scoreElem.position(20, 20);
-  scoreElem.id = 'score';
-  scoreElem.style('color', 'white');
 
   gsm = new GameStateManager();
   //var gsFirst = new GameState_MainMenu(gsm);
