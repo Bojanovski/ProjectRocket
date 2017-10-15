@@ -48,18 +48,25 @@ class GameState_Gameplay extends GameState {
 		// get center of the best ship
 		var bestX = 0.0;
 		var bestY = 0.0;
+		var winI = -1;
 		for (var i = 0; i < this.ships.length; i++) {
 			var currX = this.ships[i].nodes[0].x;
 			var currY = this.ships[i].nodes[0].y;
 			if (currY < bestY) {
 				bestX = currX;
 				bestY = currY;
+				winI = i;
 			}
 		}
-
+		
+		if (winI !== -1) {
+			var shipCOM = this.ships[winI].centerOfMass();
+			bestX = shipCOM.x;
+			bestY = shipCOM.y;
+		}
 		// follow the winner
 		translate(width/2 - bestX, height/2 - bestY);
-
+		
 		// display level and ships
 		this.level.display();
 		for (var i = 0; i < this.ships.length; i++) {

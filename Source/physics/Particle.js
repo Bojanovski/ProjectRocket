@@ -15,7 +15,10 @@ class Particle{
 
 		this.vel = p5.Vector.add(this.vel, p5.Vector.mult(this.acc, dt));
 		this.pos = p5.Vector.add(this.pos, p5.Vector.mult(this.vel, dt));
-
+		
+		// Add air resistance
+		this.vel = p5.Vector.mult(this.vel, 0.99);
+		
 		// Resets the acceleration accumulator
 		this.acc.set(0, 9.81);
 	}

@@ -22,12 +22,12 @@ class Level {
 			currentX += groundPlateWidth;
 		}
 		
-		this.rocks.push(new Rock([200, -900, 600, 120]));
-		this.rocks.push(new Rock([-750, -740, 600, 90]));
+		this.rocks.push(new Rock([200, -1000, 600, 120]));
+		this.rocks.push(new Rock([-750, -840, 600, 90]));
 		
-		this.rocks.push(new Rock([230, -650, 600, 70]));
-		this.rocks.push(new Rock([-550, -550, 500, 80]));
-		this.rocks.push(new Rock([-800, -350, 500, 75]));
+		this.rocks.push(new Rock([230, -750, 600, 70]));
+		this.rocks.push(new Rock([-500, -600, 500, 80]));
+		this.rocks.push(new Rock([-800, -380, 500, 75]));
 		this.rocks.push(new Rock([180, -250, 400, 40]));
 	}
 
