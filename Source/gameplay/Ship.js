@@ -201,4 +201,15 @@ class Ship {
 		fill(0, 255, 0);
 		ellipse(this.x, this.y, 10, 10);
 	}
+	
+	centerOfMass() {
+		var center = createVector(0, 0);
+		if (this.nodes !== undefined) {
+			for (var i = 0; i < this.nodes.length; i++) {
+				center = p5.Vector.add(center, createVector(this.nodes[i].x, this.nodes[i].y));
+			}
+			center = p5.Vector.mult(center, 1.0 / this.nodes.length);
+		}
+		return center;
+	}
 }
