@@ -48,20 +48,83 @@ class RotationSensor extends Sensor {
 	}
 }
 
+function pointLineClosestPoint_returnT(point, lineStart, lineEnd) {
+	
+	var lineDir = p5.Vector.sub(lineEnd, lineStart);
+	lineDir.normalize();
+	var relativePoint = p5.Vector.sub(point, lineStart);
+	var projPoint = p5.Vector.dot(relativePoint, lineDir);
+	var t = projPoint / p5.Vector.dist(lineStart, lineEnd);
+	return t;
+}
+
+function pointLineClosestPoint_returnPoint(point, lineStart, lineEnd) {
+	
+	var t = pointLineClosestPoint_returnT(point, lineStart, lineEnd);
+	if (t < 0.0) t = 0.0;
+	if (t > 1.0) t = 1.0;
+	var point = p5.Vector.lerp(lineStart, lineEnd, t);
+	return point;
+}
+
 class DistanceSensor extends Sensor {
 
 	constructor(x, y, r) {
 		super(x, y, r);
-		this.distance;
+		// basically a distance value
 		this.signalValue;
+		this.closestPoint;
 	}
 	
 	display(shipX, shipY) {
 		super.display(shipX, shipY, [50, 180, 200]);
+		
+		
+		stroke([50, 180, 200]);
+		strokeWeight(2);
+		line(this.closestPoint.x, this.closestPoint.y, this.x, this.y);
+		
 	}
 	
 	updateDistance(listOfRocks) {
 		
+		this.signalValue = 100000.0;
+		var myPos = createVector(this.x, this.y);
+		for (var i = 0; i < listOfRocks.length; i++) { // for each rock
+			var rock = listOfRocks[i];
+			var upLeft = createVector(rock.points[0], 						rock.points[1]);
+			var upRight = createVector(rock.points[0] + rock.points[2], 	rock.points[1]);
+			var downLeft = createVector(rock.points[0], 					rock.points[1] + rock.points[3]);
+			var downRight = createVector(rock.points[0] + rock.points[2], 	rock.points[1] + rock.points[3]);
+
+			var points = [];
+			points[0] = pointLineClosestPoint_returnPoint(myPos, upLeft, upRight);
+			points[1] = pointLineClosestPoint_returnPoint(myPos, upRight, downRight);
+			points[2] = pointLineClosestPoint_returnPoint(myPos, downRight, downLeft);
+			points[3] = pointLineClosestPoint_returnPoint(myPos, downLeft, upLeft);
+			
+			var dist = [];
+			dist[0] = p5.Vector.dist(myPos, points[0]);
+			dist[1] = p5.Vector.dist(myPos, points[1]);
+			dist[2] = p5.Vector.dist(myPos, points[2]);
+			dist[3] = p5.Vector.dist(myPos, points[3]);
+			
+			// find the closest
+			var smallestI = 0;
+			for (var j = 0; j < 4; j++) {
+				if (dist[j] < dist[smallestI]) {
+					smallestI = j;
+				}
+			}
+			
+			if (dist[smallestI] < this.signalValue) {
+				this.signalValue = dist[smallestI];
+				this.closestPoint = points[smallestI];
+			}
+			
+		}
+		
+		this.signalValue = 0;
 		//print(listOfRocks.length);
 		
 	}
