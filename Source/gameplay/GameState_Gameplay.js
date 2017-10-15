@@ -45,7 +45,7 @@ class GameState_Gameplay extends GameState {
 
 		// simulation basics
 		this.simulationTimer = 0.0;
-		this.simulationDuration = 15.0;
+		this.simulationDuration = 10.0;
 		this.simulationStatus = "on";
 
 		// build level

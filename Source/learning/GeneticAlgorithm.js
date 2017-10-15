@@ -69,7 +69,7 @@ class GeneticAlgorithm {
     var currentEliteIndex = 0;
     while (this.population.length < previousPopulationSize && currentEliteIndex < elite.length) {
         var newGenome = _.cloneDeep(elite[currentEliteIndex]);
-        newGenome.randomMutation();
+        newGenome.randomMutation(0.1);
         this.population.push(newGenome);
         currentEliteIndex = (currentEliteIndex + 1) % elite.length;
     }
