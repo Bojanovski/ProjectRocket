@@ -28,6 +28,51 @@ class GeneticAlgorithm {
     return this.population;
   }
 
+  applySimulationResults(results) {
+    // map the results with population
+    var resultsPopulationMap = [];
+    for (var i = 0; i < results.length && i < this.population.length; i++) {
+      resultsPopulationMap.push([this.population[i], results[i]]);
+    }
 
+    // declare comperator function for sorting
+    function Comparator(a, b) {
+      if (a[1] > b[1]) return -1;
+      if (a[1] < b[1]) return 1;
+      return 0;
+    }
+
+    // sort
+    resultsPopulationMap.sort(Comparator);
+
+    // list elite
+    var eliteSize = 3;
+    var elite = [];
+    for (var i = 0; i < eliteSize && i < resultsPopulationMap.length; i++) {
+      elite.push(resultsPopulationMap[i][0]);
+    }
+
+    // repopulate from elite
+    this.populateFromElite(elite);
+  }
+
+  populateFromElite(elite) {
+    // previous population size
+    var previousPopulationSize = this.population.length;
+    // clear
+    this.population = [];
+    // add elite
+    for (var i = 0; i < elite.length; i++) {
+      this.population.push(_.cloneDeep(elite[i]));
+    }
+    // add mutated elite
+    var currentEliteIndex = 0;
+    while (this.population.length < previousPopulationSize && currentEliteIndex < elite.lengths) {
+        var newGenome = _.cloneDeep(elite[currentEliteIndex]);
+        newGenome.randomMutation();
+        this.population.push(newGenome);
+        currentEliteIndex = (currentEliteIndex + 1) % elite.length;
+    }
+  }
 
 }
