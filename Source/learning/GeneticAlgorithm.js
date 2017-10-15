@@ -67,7 +67,7 @@ class GeneticAlgorithm {
     }
     // add mutated elite
     var currentEliteIndex = 0;
-    while (this.population.length < previousPopulationSize && currentEliteIndex < elite.lengths) {
+    while (this.population.length < previousPopulationSize && currentEliteIndex < elite.length) {
         var newGenome = _.cloneDeep(elite[currentEliteIndex]);
         newGenome.randomMutation();
         this.population.push(newGenome);
