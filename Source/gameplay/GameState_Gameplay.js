@@ -13,9 +13,9 @@ class GameState_Gameplay extends GameState {
 		this.shipManager = new ShipManager();
 		this.geneticAlgorithm = new GeneticAlgorithm();
 		this.ships = [];
-		
+
 		var scoreElem = createDiv('POWER');
-		scoreElem.position(920, 140);
+		scoreElem.position(width/2 * 1.85, height/2 * 0.34);
 		scoreElem.id = 'score';
 		scoreElem.style('color', 'white');
 	}
@@ -65,13 +65,13 @@ class GameState_Gameplay extends GameState {
 		for (var i = 0; i < this.ships.length; i++) {
 			this.ships[i].display();
 		}
-		
+
 		// Power bar
 		fill(250);
 		stroke(250);
 		strokeWeight(3);
 		rect(width/2 - 60.0 + bestX, -200.0 + bestY, 20, 450);
-		
+
 		fill(0);
 		stroke(250);
 		strokeWeight(3);
