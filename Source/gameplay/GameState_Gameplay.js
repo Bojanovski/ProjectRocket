@@ -13,7 +13,40 @@ class GameState_Gameplay extends GameState {
 		this.ships = [];
 	}
 
+	initiate() {
+
+		// get ship prototype
+		var shipPrototype = this.shipManager.defaultShip;
+
+		// populate genetic algorithm
+		this.geneticAlgorithm.populate(this.seed, shipPrototype, 10);
+
+		// first simulation start
+		this.startSimulation();
+	}
+
+	deinitiate() {
+	}
+
+	update(deltaTime) {
+		// simulation update
+		this.updateSimulation(deltaTime);
+	}
+
+	display() {
+		this.level.display();
+
+		for (var i = 0; i < this.ships.length; i++) {
+			this.ships[i].display();
+		}
+	}
+
 	startSimulation() {
+
+		// simulation basics
+		this.simulationTimer = 0.0;
+		this.simulationDuration = 10.0;
+		this.simulationStatus = "on";
 
 		// build level
 		this.level = new Level(this.seed);
@@ -36,41 +69,53 @@ class GameState_Gameplay extends GameState {
 		}
 	}
 
-	initiate() {
+	updateSimulation(deltaTime) {
 		
-		// get ship prototype
-		var shipPrototype = this.shipManager.defaultShip;
+		// check if playing
+		if (this.simulationStatus == "on") {
 
-		// populate genetic algorithm
-		this.geneticAlgorithm.populate(this.seed, shipPrototype, 1);
+			// check ending condition
+			if (this.simulationTimer > this.simulationDuration) {
 
-		// first simulation start
-		this.startSimulation();
-	}
+				// turn it off
+				this.simulationStatus = "off";
 
-	deinitiate() {
-	}
+				// evaluate and apply
+				var results = this.evaluateSimulation();
+				this.geneticAlgorithm.applySimulationResults(results);
 
-	update(deltaTime) {
+				// repeat simulation
+				this.startSimulation();
+			}
+			else {
+				// update the level
+				this.level.update(deltaTime);
 
-		// update the level
-		this.level.update(deltaTime);
+				// Update the physics.
+				this.physicsEngine.update(deltaTime);
 
-		// Update the physics.
-		this.physicsEngine.update(deltaTime);
+				// Update ships
+				for (var i = 0; i < this.ships.length; i++) {
+					this.ships[i].update(deltaTime, this.level.rocks);
+				}
 
-		// Update the ship
-		for (var i = 0; i < this.ships.length; i++) {
-			this.ships[i].update(deltaTime, this.level.rocks);
+				// progress timer
+				this.simulationTimer += deltaTime;
+			}
 		}
 	}
 
-	display() {
-		this.level.display();
-
+	evaluateSimulation() {
+		// get current ship altitude
+		var altitudes = [];
 		for (var i = 0; i < this.ships.length; i++) {
-			this.ships[i].display();
+			var centerOfMass = this.ships[i].centerOfMass();
+			var altitude = centerOfMass.y;
+			altitude *= -1.0;
+			altitudes.push(altitude);
 		}
+		// return altitudes
+		return altitudes;
 	}
 
 	print() {

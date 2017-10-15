@@ -72,7 +72,7 @@ class DistanceSensor extends Sensor {
 	constructor(x, y, r) {
 		super(x, y, r);
 		// basically a distance value
-		this.signalValue;
+		this.signalValue = 100000.0;
 		this.closestPoint;
 	}
 	
@@ -80,10 +80,11 @@ class DistanceSensor extends Sensor {
 		super.display(shipX, shipY, [50, 180, 200]);
 		
 		
-		stroke([50, 180, 200]);
-		strokeWeight(2);
-		line(this.closestPoint.x, this.closestPoint.y, this.x, this.y);
-		
+		if (this.signalValue !== 100000.0) {
+			stroke([50, 180, 200]);
+			strokeWeight(2);
+			line(this.closestPoint.x, this.closestPoint.y, this.x, this.y);
+		}
 	}
 	
 	updateDistance(listOfRocks) {
