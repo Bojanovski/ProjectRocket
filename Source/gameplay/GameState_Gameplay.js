@@ -9,19 +9,23 @@ class GameState_Gameplay extends GameState {
 
 		this.physicsEngine = new PhysicsEngine();
 		this.shipManager = new ShipManager();
+		this.geneticAlgorithm = new GeneticAlgorithm();
 		this.ships = [];
 	}
 
-	startSimulation(shipPrototype, numberOfShips) {
+	startSimulation() {
 
 		// build level
 		this.level = new Level(this.seed);
-		
+
+		// get training genome batch
+		var trainingGenomeBatch = this.geneticAlgorithm.getTrainingBatch();
+
 		// spawn ships
 		this.ships = [];
-		for (var i = 0; i < numberOfShips; i++) {
-			var ship = _.cloneDeep(shipPrototype);
-			ship.initiate(random(10000), this.physicsEngine);
+		for (var i = 0; i < trainingGenomeBatch.length; i++) {
+			var ship = _.cloneDeep(this.geneticAlgorithm.shipPrototype);
+			ship.initiate(trainingGenomeBatch[i], this.physicsEngine);
 			this.ships.push(ship);
 		}
 
@@ -33,7 +37,14 @@ class GameState_Gameplay extends GameState {
 	}
 
 	initiate() {
-		this.startSimulation(this.shipManager.defaultShip, 10);
+		// get ship prototype
+		var shipPrototype = this.shipManager.defaultShip;
+
+		// populate genetic algorithm
+		this.geneticAlgorithm.populate(this.seed, shipPrototype, 10);
+
+		// first simulation start
+		this.startSimulation();
 	}
 
 	deinitiate() {
