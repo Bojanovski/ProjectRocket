@@ -1,5 +1,6 @@
 
-var elasticityCoefficient = 100.1;
+var elasticityCoefficient = 100.0;
+var dampingCoefficient = 0.1;
 
 class Link {
 
