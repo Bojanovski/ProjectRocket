@@ -90,7 +90,10 @@ class GameState_Gameplay extends GameState {
 	startSimulation() {
 
 		this.timeRunning = 0.0;
-
+		
+		this.physicsEngine.particles = []
+		this.physicsEngine.staticColliders = []
+		
 		// simulation basics
 		this.simulationTimer = 0.0;
 		this.simulationDuration = 30.0;
